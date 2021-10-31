@@ -49,14 +49,14 @@ function RegisterPage() {
           {(errors.email?.type === 'required' && <p>Email is required</p>) ||
             (errors.email?.type === 'pattern' && <p>Please enter a valid email</p>)}
           <input
-            type="text"
+            type="password"
             {...register('password', {
               required: true,
               minLength: 5,
             })}
             placeholder="Password"
           />
-          {(errors.password?.type === 'required' && <p>Name is required</p>) ||
+          {(errors.password?.type === 'required' && <p>Password is required</p>) ||
             (errors.password?.type === 'minLength' && <p>Password is to short</p>)}
           <button type="submit">Register</button>
         </section>
