@@ -125,3 +125,21 @@
     }
   }
 }
+.link-text {
+  font-family: 'Open Sans', sans-serif;
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  height: 20px;
+  margin: 0;
+  color: $text-color;
+  align-items: center;
+  justify-content: center;
+  .link {
+    margin: inherit;
+    margin-left: 30px;
+    font-weight: 600;
+    color: $button-color-hover;
+    text-decoration: underline solid $button-color-hover;
+  }
+}
