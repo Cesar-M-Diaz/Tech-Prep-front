@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import logo from '../assets/images/logo techprep grueso.svg';
 import '../assets/styles/pages/Register.scss';
@@ -59,6 +60,13 @@ function RegisterPage() {
             (errors.password?.type === 'minLength' && <p>Password is to short</p>)}
           <button type="submit">Register</button>
         </section>
+
+        <div className="link-text">
+          Already have an account ?{' '}
+          <Link to="/login">
+            <p className="link"> Login </p>
+          </Link>{' '}
+        </div>
       </form>
     </main>
   );
