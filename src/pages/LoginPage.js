@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import logo from '../assets/images/logo techprep grueso.svg';
-import '../assets/styles/pages/Register.scss';
+import '../assets/styles/pages/Login.scss';
 
-function RegisterPage() {
+function LoginPage() {
   const {
     register,
     formState: { errors },
@@ -13,30 +13,19 @@ function RegisterPage() {
   const onSubmit = (data) => console.log(data);
 
   return (
-    <main className="register-page__body">
+    <main className="login-page__body">
       <img src={logo} alt="logo" className="tech-prep__logo" />
-      <form onSubmit={handleSubmit(onSubmit)} className="register-form__container">
-        <section className="register-form__auth-0">
+      <form onSubmit={handleSubmit(onSubmit)} className="login-form__container">
+        <section className="login-form__auth-0">
           <button>Continue with Google</button>
           <button>Continue with GitHub</button>
         </section>
-        <div className="register-page__division">
+        <div className="login-page__division">
           <div></div>
           <p>or</p>
           <div></div>
         </div>
-        <section className="register-form__data">
-          <input
-            type="text"
-            {...register('name', {
-              required: true,
-              pattern:
-                /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/g,
-            })}
-            placeholder="Name"
-          />
-          {(errors.name?.type === 'required' && <p>Name is required</p>) ||
-            (errors.name?.type === 'pattern' && <p>Name must only contain letters</p>)}
+        <section className="login-form__data">
           <input
             type="email"
             {...register('email', {
@@ -58,18 +47,17 @@ function RegisterPage() {
           />
           {(errors.password?.type === 'required' && <p>Name is required</p>) ||
             (errors.password?.type === 'minLength' && <p>Password is to short</p>)}
-          <button type="submit">Register</button>
+          <button type="submit">Login</button>
         </section>
-
-        <p className="link-text">
-          Already have an account ?
-          <Link to="/login">
-            <p className="link"> Login </p>
-          </Link>
-        </p>
+        <div className="link-text">
+          Don't have an account ?{' '}
+          <Link to="/register">
+            <p className="link"> Register </p>
+          </Link>{' '}
+        </div>
       </form>
     </main>
   );
 }
 
-export default RegisterPage;
+export default LoginPage;
