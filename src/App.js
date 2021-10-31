@@ -1,6 +1,7 @@
 import { Router, Switch, Route } from 'react-router-dom';
 import history from './utils/history';
 import Register from './pages/RegisterPage';
+import LoginPage from './pages/LoginPage';
 import './assets/styles/pages/App.css';
 
 function App() {
@@ -12,8 +13,8 @@ function App() {
         {/* <Route exact path="/home" component={HomePage} />
         <Route exact path="/" component={LandingPage} /> */}
         <Route exact path="/register" component={Register} />
-        {/* <Route exact path="/login" component={LoginPage} />
-        <Route path="*" component={errorPage} /> */}
+        <Route exact path="/login" component={LoginPage} />
+        {/* <Route path="*" component={errorPage} /> */}
       </Switch>
       {/* </Layout> */}
     </Router>

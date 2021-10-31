@@ -15,14 +15,27 @@ $button-color: #e95f55;
 $text-color: #515151;
 $background-figures-color: #fff56c;
 $unselected-color: #c4c4c4;
-$input-height: 50px;
-$button-height: 60px;
+$input-height: 40px;
+$button-height: 40px;
 $input-width: 80%;
 $button-width: 80%;
 $input-border-color: #b6b6b6;
 $input-border-radius: 5px;
 $input-padding: 10px;
 $input-border-width: 2px;
+
+// sizes for mobile
+
+$width-mobile: 95%;
+
+// sizes for tablet
+
+$width-tablet: 60%;
+
+// sizes for desktop
+
+$width-desktop-sm: 40%;
+$width-desktop-lg: 35%;
 
 body {
   margin: 0;
