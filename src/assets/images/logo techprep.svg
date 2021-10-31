@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   id="svg16720"
+   sodipodi:docname="logo techprep.svg"
+   viewBox="0 0 90 135"
+   sodipodi:version="0.32"
+   version="1.0"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs221" />
+  <sodipodi:namedview
+     id="base"
+     bordercolor="#666666"
+     inkscape:pageshadow="2"
+     guidetolerance="10"
+     pagecolor="#ffffff"
+     gridtolerance="10000"
+     inkscape:window-height="1346"
+     inkscape:zoom="5.6"
+     objecttolerance="10"
+     showgrid="false"
+     borderopacity="1.0"
+     inkscape:current-layer="g4520"
+     inkscape:cx="25.982143"
+     inkscape:cy="70.357143"
+     inkscape:window-y="-11"
+     inkscape:window-x="-11"
+     inkscape:window-width="2560"
+     inkscape:pageopacity="0.0"
+     inkscape:document-units="px"
+     inkscape:pagecheckerboard="0"
+     inkscape:window-maximized="1" />
+  <g
+     id="layer1"
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     transform="translate(-117.86 -330.58)">
+    <g
+       id="g4520"
+       transform="matrix(0.59705342,0.41685185,-0.41685185,0.59705342,158.76162,320.41577)">
+      <rect
+         id="rect4522"
+         style="fill:none;stroke:#ffffff;stroke-width:3.39753679;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         ry="11.106136"
+         height="106.78977"
+         width="71.193184"
+         y="2.84395"
+         x="25.822884"
+         transform="rotate(8.8957881)" />
+      <rect
+         id="rect4522-6"
+         style="fill:none;stroke:#ffffff;stroke-width:3.39753679;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         ry="11.106136"
+         height="106.78977"
+         width="71.193184"
+         y="31.155243"
+         x="52.989357"
+         transform="rotate(8.8957881)" />
+    </g>
+  </g>
+  <metadata
+     id="metadata218">
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/publicdomain/" />
+        <dc:publisher>
+          <cc:Agent
+             rdf:about="http://openclipart.org/">
+            <dc:title>Openclipart</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:date>2009-02-07T18:35:42</dc:date>
+        <dc:description>Ace of clubs from a funky card deck.</dc:description>
+        <dc:source>https://openclipart.org/detail/21431/ace-of-clubs-by-momoko</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>momoko</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>ace</rdf:li>
+            <rdf:li>card</rdf:li>
+            <rdf:li>clubs</rdf:li>
+            <rdf:li>remix</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/publicdomain/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>

@@ -1,0 +1,67 @@
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import logo from '../assets/images/logo techprep grueso.svg';
+import '../assets/styles/pages/Register.scss';
+
+function RegisterPage() {
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
+  const onSubmit = (data) => console.log(data);
+
+  return (
+    <main className="register-page__body">
+      <img src={logo} alt="logo" className="tech-prep__logo" />
+      <form onSubmit={handleSubmit(onSubmit)} className="register-form__container">
+        <section className="register-form__auth-0">
+          <button>Continue with Google</button>
+          <button>Continue with GitHub</button>
+        </section>
+        <div className="register-page__division">
+          <div></div>
+          <p>or</p>
+          <div></div>
+        </div>
+        <section className="register-form__data">
+          <input
+            type="text"
+            {...register('name', {
+              required: true,
+              pattern:
+                /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/g,
+            })}
+            placeholder="Name"
+          />
+          {(errors.name?.type === 'required' && <p>Name is required</p>) ||
+            (errors.name?.type === 'pattern' && <p>Name must only contain letters</p>)}
+          <input
+            type="email"
+            {...register('email', {
+              required: true,
+              pattern:
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+            })}
+            placeholder="Email"
+          />
+          {(errors.email?.type === 'required' && <p>Email is required</p>) ||
+            (errors.email?.type === 'pattern' && <p>Please enter a valid email</p>)}
+          <input
+            type="text"
+            {...register('password', {
+              required: true,
+              minLength: 5,
+            })}
+            placeholder="Password"
+          />
+          {(errors.password?.type === 'required' && <p>Name is required</p>) ||
+            (errors.password?.type === 'minLength' && <p>Password is to short</p>)}
+          <button type="submit">Register</button>
+        </section>
+      </form>
+    </main>
+  );
+}
+
+export default RegisterPage;

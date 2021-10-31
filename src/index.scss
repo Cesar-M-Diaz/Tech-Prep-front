@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@300;400;500;600;700;800&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+// font-family: 'Bebas Neue', cursive;
+// font-family: 'Open Sans', sans-serif;
+// font-family: 'Roboto', sans-serif;
+
+$gradient-reg-a: #ff5d5d;
+$gradient-reg-b: #eae227;
+$gradient-nav-a: #fe655a;
+$gradient-nav-b: #f97700;
+$button-color-hover: #fe655a;
+$button-color: #e95f55;
+$text-color: #515151;
+$background-figures-color: #fff56c;
+$unselected-color: #c4c4c4;
+$input-height: 50px;
+$button-height: 60px;
+$input-width: 80%;
+$button-width: 80%;
+$input-border-color: #b6b6b6;
+$input-border-radius: 5px;
+$input-padding: 10px;
+$input-border-width: 2px;
+
+body {
+  margin: 0;
+  font-family: 'Bebas Neue', cursive, 'Open Sans', sans-serif, 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
