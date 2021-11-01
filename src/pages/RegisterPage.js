@@ -4,6 +4,8 @@ import { useForm } from 'react-hook-form';
 import history from '../utils/history';
 import logo from '../assets/images/logo techprep grueso.svg';
 import '../assets/styles/pages/Register.scss';
+import { FcGoogle } from 'react-icons/fc';
+import { FaGithub } from 'react-icons/fa';
 
 function RegisterPage() {
   const {
@@ -18,8 +20,18 @@ function RegisterPage() {
       <img src={logo} alt="logo" className="tech-prep__logo" onClick={() => history.push('/')} />
       <form onSubmit={handleSubmit(onSubmit)} className="register-form__container">
         <section className="register-form__auth-0">
-          <button>Continue with Google</button>
-          <button>Continue with GitHub</button>
+          <button>
+            <div className="auth-0-button__container">
+              <FcGoogle className="company__logo" />
+              <p>Continue with Google</p>
+            </div>
+          </button>
+          <button>
+            <div className="auth-0-button__container">
+              <FaGithub className="company__logo" />
+              <p>Continue with GitHub</p>
+            </div>
+          </button>
         </section>
         <div className="register-page__division">
           <div></div>

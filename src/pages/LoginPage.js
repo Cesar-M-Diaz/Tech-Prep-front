@@ -4,6 +4,8 @@ import { useForm } from 'react-hook-form';
 import history from '../utils/history';
 import logo from '../assets/images/logo techprep grueso.svg';
 import '../assets/styles/pages/Login.scss';
+import { FcGoogle } from 'react-icons/fc';
+import { FaGithub } from 'react-icons/fa';
 
 function LoginPage() {
   const {
@@ -18,8 +20,18 @@ function LoginPage() {
       <img src={logo} alt="logo" className="tech-prep__logo" onClick={() => history.push('/')} />
       <form onSubmit={handleSubmit(onSubmit)} className="login-form__container">
         <section className="login-form__auth-0">
-          <button>Continue with Google</button>
-          <button>Continue with GitHub</button>
+          <button>
+            <div className="auth-0-button__container">
+              <FcGoogle className="company__logo" />
+              <p>Continue with Google</p>
+            </div>
+          </button>
+          <button>
+            <div className="auth-0-button__container">
+              <FaGithub className="company__logo" />
+              <p>Continue with GitHub</p>
+            </div>
+          </button>
         </section>
         <div className="login-page__division">
           <div></div>
