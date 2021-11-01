@@ -14,6 +14,9 @@
 
 .tech-prep__logo {
   display: none;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .register-form__container {
