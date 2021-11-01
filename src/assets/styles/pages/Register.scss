@@ -13,7 +13,11 @@
 }
 
 .tech-prep__logo {
-  display: none;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 75px;
+  height: 75px;
   &:hover {
     cursor: pointer;
   }
@@ -26,6 +30,7 @@
   justify-content: center;
   width: $width-mobile;
   height: auto;
+  margin: 90px 0;
   padding: 60px 0;
   background-color: #fff;
   border-radius: 30px;
@@ -148,7 +153,6 @@
 
 @media screen and (min-width: 768px) {
   .tech-prep__logo {
-    display: initial;
     position: absolute;
     top: 20px;
     left: 20px;
