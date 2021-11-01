@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import history from '../utils/history';
 import logo from '../assets/images/logo techprep grueso.svg';
 import '../assets/styles/pages/Register.scss';
 
@@ -14,7 +15,7 @@ function RegisterPage() {
 
   return (
     <main className="register-page__body">
-      <img src={logo} alt="logo" className="tech-prep__logo" />
+      <img src={logo} alt="logo" className="tech-prep__logo" onClick={() => history.push('/')} />
       <form onSubmit={handleSubmit(onSubmit)} className="register-form__container">
         <section className="register-form__auth-0">
           <button>Continue with Google</button>
