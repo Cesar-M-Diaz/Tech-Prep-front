@@ -86,7 +86,7 @@
   &-hidden {
     @extend .header-links__container-mobile;
     transition: 1s;
-    top: calc(-423.75px + 70px);
+    top: calc(-412.84px + 70px);
   }
 }
 
@@ -107,6 +107,13 @@
     height: 100px;
     .header-logo__container {
       width: 30%;
+      .header__logo {
+        width: 70px;
+        height: 70px;
+        &:hover {
+          cursor: pointer;
+        }
+      }
     }
     .header-links__container {
       display: flex;

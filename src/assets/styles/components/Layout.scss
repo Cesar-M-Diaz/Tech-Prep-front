@@ -6,7 +6,7 @@
   &-active {
     @extend .layout__container-mobile;
     transition: 1s;
-    margin-top: calc(423.75px - 70px);
+    margin-top: calc(412.84px - 70px);
   }
   &-hidden {
     @extend .layout__container-mobile;
@@ -19,7 +19,7 @@
 
 @media screen and (min-width: 768px) {
   .layout__container {
-    display: block;
+    display: inherit;
     height: calc(100vh - 170px);
     box-sizing: border-box;
   }
