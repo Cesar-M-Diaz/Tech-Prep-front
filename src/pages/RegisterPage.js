@@ -4,8 +4,8 @@ import { useForm } from 'react-hook-form';
 import history from '../utils/history';
 import logo from '../assets/images/logo techprep grueso.svg';
 import '../assets/styles/pages/Register.scss';
-import { FcGoogle } from 'react-icons/fc';
-import { FaGithub } from 'react-icons/fa';
+// import { FcGoogle } from 'react-icons/fc';
+// import { FaGithub } from 'react-icons/fa';
 
 function RegisterPage() {
   const {
