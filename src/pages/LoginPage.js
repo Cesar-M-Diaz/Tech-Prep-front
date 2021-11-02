@@ -13,7 +13,8 @@ function LoginPage() {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = () => history.push('/home');
+  // const onSubmit = (data) => console.log(data);
 
   return (
     <main className="login-page__body">
