@@ -59,7 +59,7 @@ function Navbar({ toggleMenu }) {
                 toggleSecondaryMenu ? '-active' : '-hidden'
               }`}
             >
-              <p>profile</p>
+              <p onClick={() => history.push('/profile')}>profile</p>
               <p>logout</p>
             </div>
           </section>

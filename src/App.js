@@ -5,6 +5,7 @@ import Register from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
 import Layout from './components/Layout';
 import HomePage from './pages/HomePage';
+import Profile from './pages/Profile';
 import './assets/styles/pages/App.css';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route exact path="/login" component={LoginPage} />
         <Layout>
           <Route exact path="/home" component={HomePage} />
+          <Route exact path="/profile" component={Profile} />
         </Layout>
       </Switch>
     </Router>
