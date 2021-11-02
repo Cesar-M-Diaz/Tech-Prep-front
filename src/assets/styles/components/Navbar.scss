@@ -68,7 +68,7 @@
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    background-attachment: cover;
+    object-fit: cover;
     background-color: white;
     margin: 10px 0 20px 0;
   }
@@ -152,7 +152,7 @@
         width: 66px;
         height: 66px;
         border-radius: 50%;
-        background-attachment: cover;
+        object-fit: cover;
         background-color: white;
         margin-right: 45px;
         &:hover {
