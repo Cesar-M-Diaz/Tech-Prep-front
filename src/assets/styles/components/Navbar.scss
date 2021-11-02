@@ -3,7 +3,10 @@
 .header__wrapper {
   position: relative;
 }
-
+.header__container-wrapper {
+  position: relative;
+  z-index: 2;
+}
 .header__container {
   position: inherit;
   z-index: 2;

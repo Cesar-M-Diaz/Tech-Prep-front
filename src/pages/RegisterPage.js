@@ -13,7 +13,8 @@ function RegisterPage() {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = () => history.push('/home');
+  // const onSubmit = (data) => console.log(data);
 
   return (
     <main className="register-page__body">
