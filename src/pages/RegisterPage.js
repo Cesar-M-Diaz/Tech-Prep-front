@@ -4,8 +4,8 @@ import { useForm } from 'react-hook-form';
 import history from '../utils/history';
 import logo from '../assets/images/logo techprep grueso.svg';
 import '../assets/styles/pages/Register.scss';
-import { FcGoogle } from 'react-icons/fc';
-import { FaGithub } from 'react-icons/fa';
+// import { FcGoogle } from 'react-icons/fc';
+// import { FaGithub } from 'react-icons/fa';
 
 function RegisterPage() {
   const {
@@ -20,7 +20,7 @@ function RegisterPage() {
     <main className="register-page__body">
       <img src={logo} alt="logo" className="tech-prep__logo" onClick={() => history.push('/')} />
       <form onSubmit={handleSubmit(onSubmit)} className="register-form__container">
-        <section className="register-form__auth-0">
+        {/* <section className="register-form__auth-0">
           <button>
             <div className="auth-0-button__container">
               <FcGoogle className="company__logo" />
@@ -38,7 +38,7 @@ function RegisterPage() {
           <div></div>
           <p>or</p>
           <div></div>
-        </div>
+        </div> */}
         <section className="register-form__data">
           <input
             type="text"

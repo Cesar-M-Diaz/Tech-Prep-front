@@ -3,42 +3,31 @@
 .header__wrapper {
   position: relative;
 }
+
 .header__container-wrapper {
-  position: relative;
-  z-index: 2;
+  display: none;
 }
-.header__container {
-  position: inherit;
-  z-index: 2;
-  height: 70px;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  .header-logo__container {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding-left: 10px;
-    width: auto;
-    .header__logo {
-      width: 50px;
-      height: 50px;
-      &:hover {
-        cursor: pointer;
-      }
+
+.header-logo__container-mobile {
+  z-index: 3;
+  position: fixed;
+  top: 10px;
+  left: 20px;
+  width: auto;
+  .header__logo-mobile {
+    width: 50px;
+    height: 50px;
+    &:hover {
+      cursor: pointer;
     }
-  }
-  .header-links__container {
-    display: none;
   }
 }
 
 .header__menu__container {
-  position: absolute;
+  position: fixed;
   top: 18px;
   right: 0;
-  z-index: 3;
+  z-index: 2;
   width: auto;
   .header__menu {
     font-size: 2rem;
@@ -51,7 +40,7 @@
 
 .header-links__container-mobile {
   z-index: 1;
-  position: absolute;
+  position: fixed;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -107,17 +96,30 @@
 @media screen and (min-width: 768px) {
   .header__container-wrapper {
     position: relative;
+    display: flex;
   }
 
   .header__menu__container {
     display: none;
   }
+  .header-logo__container-mobile {
+    display: none;
+  }
 
   .header__container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    position: fixed;
+    top: 0;
     z-index: 2;
     background-image: linear-gradient(to bottom right, $gradient-nav-a 20%, $gradient-nav-b);
     height: 100px;
     .header-logo__container {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin-left: 10px;
       width: 30%;
       .header__logo {
         width: 70px;
@@ -161,11 +163,11 @@
   }
 
   .header-secondary-links__container {
+    position: fixed;
     z-index: 1;
     background-color: $gradient-nav-b;
     display: flex;
     flex-direction: column;
-    position: absolute;
     right: 0;
     width: 160px;
     height: 200px;

@@ -14,6 +14,14 @@ function Navbar({ toggleMenu }) {
     <>
       <IconContext.Provider value={{ color: '#fff' }}>
         <div className="header__wrapper">
+          <div className="header-logo__container-mobile">
+            <img
+              src={logo}
+              alt=""
+              className="header__logo-mobile"
+              onClick={() => history.push('/home')}
+            />
+          </div>
           <div className="header__menu__container">
             {!menu ? (
               <FiMenu className="header__menu" onClick={() => toggleMenu(setMenu(!menu))} />
