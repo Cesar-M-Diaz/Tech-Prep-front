@@ -1,0 +1,34 @@
+@import '../../../index.scss';
+
+.layout__container-mobile {
+  min-height: calc(100vh - 70px - 45px);
+  box-sizing: border-box;
+  &-active {
+    @extend .layout__container-mobile;
+    transition: 1s;
+    margin-top: calc(508.07px - 70px);
+  }
+  &-hidden {
+    @extend .layout__container-mobile;
+    transition: 1s;
+  }
+}
+.layout__container {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .layout__container {
+    display: inherit;
+    height: calc(100vh - 170px);
+    box-sizing: border-box;
+  }
+  .layout__container-mobile {
+    &-active {
+      display: none;
+    }
+    &-hidden {
+      display: none;
+    }
+  }
+}

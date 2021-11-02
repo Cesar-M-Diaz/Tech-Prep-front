@@ -3,21 +3,23 @@ import history from './utils/history';
 import LandingPage from './pages/LandingPage';
 import Register from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
+import Layout from './components/Layout';
+import HomePage from './pages/HomePage';
 import './assets/styles/pages/App.css';
 
 function App() {
   return (
     <Router history={history}>
       {/* <ScrollToTop /> */}
-      {/* <Layout> */}
+      {/* <Route exact path="/home" component={HomePage} /> */}
       <Switch>
-        {/* <Route exact path="/home" component={HomePage} /> */}
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={LoginPage} />
-        {/* <Route path="*" component={errorPage} /> */}
+        <Layout>
+          <Route exact path="/home" component={HomePage} />
+        </Layout>
       </Switch>
-      {/* </Layout> */}
     </Router>
   );
 }
