@@ -4,8 +4,8 @@ import { useForm } from 'react-hook-form';
 import history from '../utils/history';
 import logo from '../assets/images/logo techprep grueso.svg';
 import '../assets/styles/pages/Login.scss';
-import { FcGoogle } from 'react-icons/fc';
-import { FaGithub } from 'react-icons/fa';
+// import { FcGoogle } from 'react-icons/fc';
+// import { FaGithub } from 'react-icons/fa';
 
 function LoginPage() {
   const {
@@ -20,7 +20,7 @@ function LoginPage() {
     <main className="login-page__body">
       <img src={logo} alt="logo" className="tech-prep__logo" onClick={() => history.push('/')} />
       <form onSubmit={handleSubmit(onSubmit)} className="login-form__container">
-        <section className="login-form__auth-0">
+        {/* <section className="login-form__auth-0">
           <button>
             <div className="auth-0-button__container">
               <FcGoogle className="company__logo" />
@@ -38,7 +38,7 @@ function LoginPage() {
           <div></div>
           <p>or</p>
           <div></div>
-        </div>
+        </div> */}
         <section className="login-form__data">
           <input
             type="email"
