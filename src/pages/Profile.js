@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import '../assets/styles/pages/Profile.scss';
 
 function Profile() {
   const [previewPhoto, setPreviewPhoto] = useState('');
@@ -63,36 +64,42 @@ function Profile() {
 
   return (
     <main className="profile__body">
+      <div className="profile__backgroud-shape-2"></div>
+      <div className="profile__backgroud-shape-1"></div>
       <form className="profile__card-body" onSubmit={handleSubmit(onSubmit)}>
-        <img src={previewPhoto} alt="" />
-        <label htmlFor="upload" className="tutor-edit__button-photo">
-          upload photo
-        </label>
-        <input
-          type="file"
-          id="upload"
-          onChange={onChangeFile}
-          hidden
-          accept="image/png, image/jpeg"
-        />
-        <div className="profile__text-container">
-          <h1>hello internet citizen this is your tech-prep id</h1>
-          <div className="profile__input-container">
+        <h1>hello internet citizen this is your tech-prep id</h1>
+        <div className="profile__card-body-container">
+          <div className="profile__photo-container">
+            <img src={previewPhoto} alt="" />
+            <label htmlFor="upload" className="profile__button-photo">
+              upload photo
+            </label>
             <input
-              type="text"
-              disabled={isDisabled.name}
-              {...register('name', {
-                required: true,
-                pattern:
-                  /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/g,
-              })}
-              placeholder="Name"
+              type="file"
+              id="upload"
+              onChange={onChangeFile}
+              hidden
+              accept="image/png, image/jpeg"
             />
+          </div>
+          <div className="profile__text-container">
+            <div className="profile__input-container">
+              <input
+                type="text"
+                disabled={isDisabled.name}
+                {...register('name', {
+                  required: true,
+                  pattern:
+                    /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/g,
+                })}
+                placeholder="Name"
+              />
+              <button className="profile__button-edit-name" onClick={handleClick}>
+                edit
+              </button>
+            </div>
             {(errors.name?.type === 'required' && <p>Name is required</p>) ||
               (errors.name?.type === 'pattern' && <p>Name must only contain letters</p>)}
-            <button className="profile__button-edit-name" onClick={handleClick}>
-              edit
-            </button>
             <div className="profile__input-container">
               <input
                 type="email"
@@ -104,12 +111,12 @@ function Profile() {
                 })}
                 placeholder="Email"
               />
-              {(errors.email?.type === 'required' && <p>Email is required</p>) ||
-                (errors.email?.type === 'pattern' && <p>Please enter a valid email</p>)}
               <button className="profile__button-edit-email" onClick={handleClick}>
                 edit
               </button>
             </div>
+            {(errors.email?.type === 'required' && <p>Email is required</p>) ||
+              (errors.email?.type === 'pattern' && <p>Please enter a valid email</p>)}
             <div className="profile__input-container">
               <input
                 disabled={isDisabled.password}
@@ -120,12 +127,12 @@ function Profile() {
                 })}
                 placeholder="Password"
               />
-              {(errors.password?.type === 'required' && <p>Password is required</p>) ||
-                (errors.password?.type === 'minLength' && <p>Password is to short</p>)}
               <button className="profile__button-edit-password" onClick={handleClick}>
                 edit
               </button>
             </div>
+            {(errors.password?.type === 'required' && <p>Password is required</p>) ||
+              (errors.password?.type === 'minLength' && <p>Password is to short</p>)}
             <button className="profile__button-submit">save changes</button>
           </div>
         </div>
