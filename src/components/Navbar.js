@@ -31,7 +31,7 @@ function Navbar({ toggleMenu }) {
           </div>
           <div className={`header-links__container-mobile${menu ? '-active' : '-hidden'}`}>
             <img src="" alt="" />
-            <p>profile</p>
+            <p onClick={() => history.push('/profile')}>profile</p>
             <p>logout</p>
             <p>train</p>
             <p>add questions</p>
