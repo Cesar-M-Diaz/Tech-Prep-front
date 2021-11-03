@@ -133,12 +133,13 @@
   .profile__button-edit-name,
   .profile__button-edit-email,
   .profile__button-edit-password {
+    transition: 0.5s;
     font-family: 'Open Sans', sans-serif;
     letter-spacing: 1px;
     color: transparent;
     font-size: 0.8rem;
     font-weight: 800;
-    width: 0px;
+    width: 5px;
     height: 40px;
     border: none;
     background: transparent;
@@ -148,7 +149,7 @@
   &:hover {
     cursor: pointer;
     button {
-      transition: 0.2s ease-in-out;
+      transition: 0.5s;
       width: 130px;
       border-radius: 5px;
       background-color: $button-color-hover;
