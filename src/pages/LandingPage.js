@@ -9,7 +9,7 @@ import '../assets/styles/pages/Langing.scss';
 function LandingPage() {
   const [speed] = useState(0.4);
   const [target] = useState(5);
-  const [count] = useState(30);
+  const [count] = useState(40);
   return (
     <main className="landing__body">
       <Suspense fallback={null}>
