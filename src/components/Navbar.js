@@ -63,7 +63,7 @@ function Navbar({ toggleMenu }) {
             <p onClick={handleClick} id="train-m">
               train
             </p>
-            <p onClick={handleClick} id="addquestions-m">
+            <p onClick={handleClick} id="add_questions-m">
               add questions
             </p>
             <p onClick={handleClick} id="resources-m">
