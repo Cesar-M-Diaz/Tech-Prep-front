@@ -124,6 +124,7 @@ function CreateCardPage() {
     }
   }
 
+  // measure max length of input
   // const text =
   //   'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum';
   // console.log(text.length);
@@ -135,6 +136,7 @@ function CreateCardPage() {
           <>
             <label className="input__label">Question</label>
             <textarea
+              className="create-card__question"
               type="text"
               name="question"
               onBlur={validateInputs}
@@ -146,6 +148,7 @@ function CreateCardPage() {
 
             <label className="input__label">option 1</label>
             <textarea
+              className="create-card__option"
               type="text"
               name="option_1"
               placeholder="Option 1"
@@ -160,6 +163,7 @@ function CreateCardPage() {
 
             <label className="input__label">option 2</label>
             <textarea
+              className="create-card__option"
               type="text"
               name="option_2"
               placeholder="Option 2"
@@ -174,6 +178,7 @@ function CreateCardPage() {
 
             <label className="input__label">option 3</label>
             <textarea
+              className="create-card__option"
               type="text"
               name="option_3"
               placeholder="Option 3"
@@ -191,6 +196,7 @@ function CreateCardPage() {
           <>
             <label className="input__label">Title</label>
             <input
+              className="create-card__title"
               type="text"
               name="title"
               placeholder="Title"
@@ -201,6 +207,7 @@ function CreateCardPage() {
             {errors.title && <p>{errors.title}</p>}
             <label className="input__label">Explanation</label>
             <textarea
+              className="create-card__explanation"
               type="text"
               name="explanation"
               placeholder="Explanation"
@@ -215,25 +222,27 @@ function CreateCardPage() {
         <button
           onClick={previous}
           disabled={count === 1}
-          className={count === 1 ? 'payment__previous-button-disabled' : 'payment__page-button'}
+          className={
+            count === 1 ? 'create-card__previous-button-disabled' : 'create-card__page-button'
+          }
         >
           previous
         </button>
         <button
           onClick={next}
           disabled={count === 2}
-          className={count === 2 ? 'payment__next-button-disabled' : 'payment__page-button'}
+          className={count === 2 ? 'create-card__next-button-disabled' : 'create-card__page-button'}
         >
           next
         </button>
         <input
           type="submit"
           disabled={count !== 2}
-          className={count === 2 ? 'payment__page-button' : 'payment__next-button-disabled'}
+          className={count === 2 ? 'create-card__page-button' : 'create-card__save-button-disabled'}
           value="save"
         />
       </form>
-      <CardEdit data={inputValue} />
+      <CardEdit data={inputValue} count={count} />
     </div>
   );
 }
