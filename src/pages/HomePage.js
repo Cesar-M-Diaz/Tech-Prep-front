@@ -13,6 +13,8 @@ function HomePage() {
       option1: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       option2: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       option3: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      explanation:
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure mollitia doloremque inventore accusamus quae quod cumque voluptate dolorem labore ea. Atque odit est tempora quam architecto dolorum dolorem doloremque natus!',
     },
     {
       id: 2,
@@ -20,6 +22,8 @@ function HomePage() {
       option1: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       option2: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       option3: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      explanation:
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure mollitia doloremque inventore accusamus quae quod cumque voluptate dolorem labore ea. Atque odit est tempora quam architecto dolorum dolorem doloremque natus!',
     },
     {
       id: 3,
@@ -27,6 +31,8 @@ function HomePage() {
       option1: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       option2: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       option3: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      explanation:
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure mollitia doloremque inventore accusamus quae quod cumque voluptate dolorem labore ea. Atque odit est tempora quam architecto dolorum dolorem doloremque natus!',
     },
   ];
 

@@ -1,36 +1,23 @@
 @import '../../../index.scss';
 
-.layout__container-mobile {
+.layout__container {
   min-height: calc(100vh - 70px - 45px);
   box-sizing: border-box;
   &-active {
-    @extend .layout__container-mobile;
-    transition: 1s;
-    margin-top: calc(505px);
+    @extend .layout__container;
+    transition: 0.5s;
+    margin-top: 505px;
   }
   &-hidden {
-    @extend .layout__container-mobile;
-    transition: 1s;
-    margin-top: 68px;
+    @extend .layout__container;
+    transition: 0.5s;
+    margin-top: 67px;
   }
-}
-.layout__container {
-  display: none;
 }
 
 @media screen and (min-width: 768px) {
   .layout__container {
-    display: inherit;
-    min-height: calc(100vh - 70px - 100px);
-    box-sizing: border-box;
     margin-top: 100px;
-  }
-  .layout__container-mobile {
-    &-active {
-      display: none;
-    }
-    &-hidden {
-      display: none;
-    }
+    min-height: calc(100vh - 170px);
   }
 }
