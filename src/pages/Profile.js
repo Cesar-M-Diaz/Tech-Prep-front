@@ -14,7 +14,9 @@ function Profile() {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm();
+  } = useForm({
+    mode: 'onTouched',
+  });
 
   function onChangeFile(e) {
     e.preventDefault();
@@ -71,18 +73,19 @@ function Profile() {
         <div className="profile__card-body-container">
           <div className="profile__photo-container">
             <img src={previewPhoto} alt="" />
-            <label htmlFor="upload" className="profile__button-photo">
+            <label htmlFor="upload-photo" className="profile__button-photo" id="upload-label">
               upload photo
             </label>
             <input
               type="file"
-              id="upload"
+              id="upload-photo"
               onChange={onChangeFile}
               hidden
               accept="image/png, image/jpeg"
             />
           </div>
           <div className="profile__text-container">
+            <label className="input__label">Name</label>
             <div className="profile__input-container">
               <input
                 type="text"
@@ -100,6 +103,7 @@ function Profile() {
             </div>
             {(errors.name?.type === 'required' && <p>Name is required</p>) ||
               (errors.name?.type === 'pattern' && <p>Name must only contain letters</p>)}
+            <label className="input__label">Email</label>
             <div className="profile__input-container">
               <input
                 type="email"
@@ -117,6 +121,7 @@ function Profile() {
             </div>
             {(errors.email?.type === 'required' && <p>Email is required</p>) ||
               (errors.email?.type === 'pattern' && <p>Please enter a valid email</p>)}
+            <label className="input__label">Password</label>
             <div className="profile__input-container">
               <input
                 disabled={isDisabled.password}

@@ -30,76 +30,76 @@
   justify-content: center;
   width: $width-mobile;
   height: auto;
-  margin: 110px 0 50px 0;
+  margin: 110px 0 60px 0;
   padding: 60px 0;
   background-color: #fff;
   border-radius: 30px;
   box-shadow: -7px 10px 13px -1px rgba(0, 0, 0, 0.33);
 }
 
-.register-form__auth-0 {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: $input-width;
-  height: auto;
-  button {
-    width: 100%;
-    box-sizing: border-box;
-    color: $text-color;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 600;
-    font-size: 1rem;
-    height: $input-height;
-    margin-bottom: 20px;
-    border-radius: $input-border-radius;
-    border: solid $input-border-width $input-border-color;
-    background-color: #fff;
-    padding: 1px 20px 1px 6px;
-    &:hover {
-      cursor: pointer;
-    }
-    .auth-0-button__container {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      height: 100%;
-    }
-    .company__logo {
-      width: 25px;
-      height: 25px;
-    }
-    p {
-      margin: 0 auto;
-    }
-  }
-}
+// .register-form__auth-0 {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   width: $input-width;
+//   height: auto;
+//   button {
+//     width: 100%;
+//     box-sizing: border-box;
+//     color: $text-color;
+//     font-family: 'Open Sans', sans-serif;
+//     font-weight: 600;
+//     font-size: 1rem;
+//     height: $input-height;
+//     margin-bottom: 20px;
+//     border-radius: $input-border-radius;
+//     border: solid $input-border-width $input-border-color;
+//     background-color: #fff;
+//     padding: 1px 20px 1px 6px;
+//     &:hover {
+//       cursor: pointer;
+//     }
+//     .auth-0-button__container {
+//       display: flex;
+//       flex-direction: row;
+//       justify-content: center;
+//       align-items: center;
+//       width: 100%;
+//       height: 100%;
+//     }
+//     .company__logo {
+//       width: 25px;
+//       height: 25px;
+//     }
+//     p {
+//       margin: 0 auto;
+//     }
+//   }
+// }
 
-.register-page__division {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  color: $input-border-color;
-  width: 80%;
-  height: 20px;
-  margin: 5px 0;
-  div {
-    width: 36%;
-    text-align: center;
-    height: 2px;
-    background-color: $input-border-color;
-  }
-  p {
-    width: 30%;
-    text-align: center;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 600;
-    font-size: 1rem;
-  }
-}
+// .register-page__division {
+//   display: flex;
+//   flex-direction: row;
+//   align-items: center;
+//   color: $input-border-color;
+//   width: 80%;
+//   height: 20px;
+//   margin: 5px 0;
+//   div {
+//     width: 36%;
+//     text-align: center;
+//     height: 2px;
+//     background-color: $input-border-color;
+//   }
+//   p {
+//     width: 30%;
+//     text-align: center;
+//     font-family: 'Open Sans', sans-serif;
+//     font-weight: 600;
+//     font-size: 1rem;
+//   }
+// }
 
 .register-form__data {
   display: flex;
@@ -116,7 +116,7 @@
     font-weight: 600;
     font-size: 1rem;
     height: $input-height;
-    margin-top: 20px;
+    margin-bottom: 20px;
     border-radius: $input-border-radius;
     border: solid $input-border-width $input-border-color;
   }
@@ -126,24 +126,28 @@
     text-align: start;
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
-    font-size: 1rem;
-    margin-top: 10px;
-    margin-bottom: 0;
+    font-size: 0.8rem;
+    margin-top: -10px;
+    margin-bottom: 20px;
+    padding-left: 10px;
   }
   button {
+    transition: 0.2s ease-in-out;
     box-sizing: border-box;
-    margin-top: 40px;
+    margin-top: 20px;
     margin-bottom: 20px;
     width: 100%;
-    background-color: $button-color;
-    color: #ffffff;
+    background-color: transparent;
+    color: $button-color;
     height: $button-height;
     font-family: 'Open Sans', sans-serif;
     font-size: 1rem;
-    border: none;
+    border: 2px solid $button-color;
     border-radius: $input-border-radius;
     &:hover {
       background-color: $button-color-hover;
+      color: white;
+      border: 2px solid $button-color-hover;
       cursor: pointer;
     }
   }
