@@ -28,8 +28,10 @@ function Questions({ card, count }) {
             </div>
           </div>
           <div className="question__back-flip">
-            <h3>{card?.title}</h3>
-            <p>{card?.explanation}</p>
+            <h2>{card?.title}</h2>
+            <div className="question__explanation-container">
+              <p>{card?.explanation}</p>
+            </div>
           </div>
         </div>
       </div>
