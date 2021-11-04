@@ -42,7 +42,9 @@ function HomePage() {
       <div className="home__questions-container">
         <h1>last questions added by the community</h1>
         <div className="home__questions">
-          <Questions questionsData={questionsData} />
+          {questionsData.map((card) => (
+            <Questions key={card.id} card={card} />
+          ))}
         </div>
       </div>
     </div>
