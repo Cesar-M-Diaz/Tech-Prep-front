@@ -12,7 +12,9 @@ function LoginPage() {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm();
+  } = useForm({
+    mode: 'onTouched',
+  });
   const onSubmit = () => history.push('/home');
   // const onSubmit = (data) => console.log(data);
 
@@ -40,6 +42,7 @@ function LoginPage() {
           <div></div>
         </div> */}
         <section className="login-form__data">
+          <label className="input__label">Email</label>
           <input
             type="email"
             {...register('email', {
@@ -51,6 +54,7 @@ function LoginPage() {
           />
           {(errors.email?.type === 'required' && <p>Email is required</p>) ||
             (errors.email?.type === 'pattern' && <p>Please enter a valid email</p>)}
+          <label className="input__label">Password</label>
           <input
             type="password"
             {...register('password', {

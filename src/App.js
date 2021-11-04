@@ -6,6 +6,7 @@ import LoginPage from './pages/LoginPage';
 import Layout from './components/Layout';
 import HomePage from './pages/HomePage';
 import Profile from './pages/Profile';
+import CreateCard from './pages/CreateCardPage';
 import './assets/styles/pages/App.css';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Layout>
           <Route exact path="/home" component={HomePage} />
           <Route exact path="/profile" component={Profile} />
+          <Route exact path="/add_questions" component={CreateCard} />
         </Layout>
       </Switch>
     </Router>

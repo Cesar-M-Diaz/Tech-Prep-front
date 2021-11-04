@@ -49,6 +49,7 @@
 }
 
 .profile__button-photo {
+  transition: 0.2s ease-in-out;
   font-family: 'Open Sans', sans-serif;
   letter-spacing: 1px;
   color: $button-color;
@@ -72,6 +73,7 @@
 }
 
 .profile__button-submit {
+  transition: 0.2s ease-in-out;
   font-family: 'Open Sans', sans-serif;
   letter-spacing: 1px;
   color: $button-color;
@@ -102,11 +104,14 @@
   justify-content: center;
   align-items: center;
   p {
-    font-size: 0.9rem;
+    width: 80%;
+    justify-content: flex-start;
+    font-size: 0.8rem;
     letter-spacing: 1px;
     font-weight: 400;
     color: $button-color-hover;
     margin-top: 0;
+    padding-left: 10px;
   }
 }
 

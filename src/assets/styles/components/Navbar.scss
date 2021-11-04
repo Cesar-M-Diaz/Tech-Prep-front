@@ -50,6 +50,7 @@
   padding: 70px 0;
   background-image: linear-gradient(to bottom right, $gradient-nav-a 20%, $gradient-nav-b);
   p {
+    transition: 0.2s ease-in-out;
     color: white;
     margin: 5px 0;
     font-size: 1.3rem;
@@ -135,6 +136,7 @@
       justify-content: space-between;
       width: 65%;
       p {
+        transition: 0.2s ease-in-out;
         font-size: 1.3rem;
         letter-spacing: 2px;
         font-weight: 400;
@@ -175,6 +177,7 @@
     align-items: center;
     justify-content: center;
     p {
+      transition: 0.2s ease-in-out;
       color: white;
       margin: 15px 0;
       font-size: 1.3rem;
