@@ -12,7 +12,9 @@ function RegisterPage() {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm();
+  } = useForm({
+    mode: 'onTouched',
+  });
   const onSubmit = () => history.push('/home');
   // const onSubmit = (data) => console.log(data);
 
@@ -40,6 +42,7 @@ function RegisterPage() {
           <div></div>
         </div> */}
         <section className="register-form__data">
+          <label className="input__label">Name</label>
           <input
             type="text"
             {...register('name', {
@@ -51,6 +54,7 @@ function RegisterPage() {
           />
           {(errors.name?.type === 'required' && <p>Name is required</p>) ||
             (errors.name?.type === 'pattern' && <p>Name must only contain letters</p>)}
+          <label className="input__label">Email</label>
           <input
             type="email"
             {...register('email', {
@@ -62,6 +66,7 @@ function RegisterPage() {
           />
           {(errors.email?.type === 'required' && <p>Email is required</p>) ||
             (errors.email?.type === 'pattern' && <p>Please enter a valid email</p>)}
+          <label className="input__label">Password</label>
           <input
             type="password"
             {...register('password', {
