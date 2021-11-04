@@ -1,6 +1,8 @@
 @import '../../../index.scss';
 
 .question__base {
+  margin-top: 60px;
+  background-color: $background-figures-color;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,10 +12,10 @@
   height: auto;
   transition: 200ms;
   border-radius: 20px;
-  box-shadow: 14px -14px 0px 0px #fff56c;
+  box-shadow: 14px -14px 0px 0px $background-figures-color;
   &:hover {
     cursor: pointer;
-    box-shadow: 23px -35px 0px 0px #fff56c;
+    box-shadow: 23px -35px 0px 0px $background-figures-color;
   }
 }
 
@@ -22,10 +24,7 @@
   width: 300px;
   height: 400px;
   perspective: 1000px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  background-color: transparent;
 }
 
 .question__flip,
@@ -45,10 +44,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: transparent;
 }
 
 .question__front-flip,
 .question__back-flip {
+  box-sizing: border-box;
   background-color: white;
   position: absolute;
   width: 100%;
@@ -56,32 +57,61 @@
   backface-visibility: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
+  padding: 20px;
   align-items: center;
   border-radius: 20px;
   border: solid 2px $button-color-hover;
-  h3 {
+  h2 {
     text-align: center;
-    width: 85%;
-    font-size: 1.2rem;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.5rem;
     font-weight: 400;
+    color: $button-color-hover;
+  }
+  h3 {
+    font-family: 'Open Sans', sans-serif;
+    padding: 0;
+    text-align: justify;
+    text-justify: distribute;
+    text-align: center;
+    width: 100%;
+    font-size: 1.1rem;
+    font-weight: 600;
     margin-top: 0;
     margin-bottom: 40px;
     color: $text-color;
   }
-  .question-option__container {
-    display: flex;
-    align-items: center;
-    width: 85%;
+
+  .question__explanation-container {
+    width: 100%;
+    height: 70%;
     p {
-      width: 90%;
+      padding: 0;
+      text-align: justify;
+      text-justify: distribute;
+      width: 100%;
       font-size: 1rem;
       font-weight: 300;
       margin-bottom: 1rem;
       margin: 10px 0;
       color: $text-color;
     }
-    button {
+  }
+
+  .question-option__container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    p {
+      width: 100%;
+      font-size: 1rem;
+      font-weight: 300;
+      margin-bottom: 1rem;
+      margin: 10px 0;
+      color: $text-color;
+    }
+    div {
       width: 10px;
       height: 10px;
       border-radius: 50%;

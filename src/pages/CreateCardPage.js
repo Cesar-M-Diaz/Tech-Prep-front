@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import CardEdit from '../components/CardEdit';
-// import history from '../utils/history';
 import '../assets/styles/pages/CardCreatePage.scss';
 
 function CreateCardPage() {
@@ -17,6 +16,7 @@ function CreateCardPage() {
     option_3: '',
     title: '',
     explanation: '',
+    answer: '',
   });
   const [errors, setErrors] = useState({
     question: '',
@@ -25,6 +25,7 @@ function CreateCardPage() {
     option_3: '',
     title: '',
     explanation: '',
+    submit: '',
   });
 
   const handleChange = (e) => {
@@ -42,18 +43,30 @@ function CreateCardPage() {
         option_2: false,
         option_3: false,
       });
+      setInputValue((prevState) => ({
+        ...prevState,
+        answer: inputValue.option_1,
+      }));
     } else if (e.target.id === 'option_2') {
       setIsAnswer({
         option_1: false,
         option_2: !isAnswer.option_2,
         option_3: false,
       });
+      setInputValue((prevState) => ({
+        ...prevState,
+        answer: inputValue.option_2,
+      }));
     } else if (e.target.id === 'option_3') {
       setIsAnswer({
         option_1: false,
         option_2: false,
         option_3: !isAnswer.option_3,
       });
+      setInputValue((prevState) => ({
+        ...prevState,
+        answer: inputValue.option_3,
+      }));
     }
   }
 
@@ -74,16 +87,20 @@ function CreateCardPage() {
   function handleSubmit(e) {
     e.preventDefault();
     if (
-      errors.question === '' &&
-      errors.option_1 === '' &&
-      errors.option_2 === '' &&
-      errors.option_3 === '' &&
-      errors.title === '' &&
-      errors.explanation === ''
+      errors.question === false &&
+      errors.option_1 === false &&
+      errors.option_2 === false &&
+      errors.option_3 === false &&
+      errors.title === false &&
+      errors.explanation === false &&
+      (isAnswer.option_1 || isAnswer.option_2 || isAnswer.option_3)
     ) {
       console.log(inputValue);
     } else {
-      console.log('Please fill the form correctly');
+      setErrors((prevState) => ({
+        ...prevState,
+        submit: 'Please fill the form correctly and select an answer',
+      }));
     }
   }
 
@@ -96,7 +113,10 @@ function CreateCardPage() {
         ...prevState,
         [name]: 'Field is required',
       }));
-    } else if ((name === 'option_1' || 'option_2' || 'option_3') && value.length > 65) {
+    } else if (
+      (name === 'option_1' || name === 'option_2' || name === 'option_3') &&
+      value.length > 65
+    ) {
       setErrors((prevState) => ({
         ...prevState,
         [name]: 'Option must me less than 65 characters',
@@ -119,7 +139,7 @@ function CreateCardPage() {
     } else {
       setErrors((prevState) => ({
         ...prevState,
-        [name]: '',
+        [name]: false,
       }));
     }
   }
@@ -131,7 +151,8 @@ function CreateCardPage() {
 
   return (
     <div className="create-card__page-body">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="create-card__form">
+        <h3>Create new question</h3>
         {count === 1 && (
           <>
             <label className="input__label">Question</label>
@@ -146,7 +167,17 @@ function CreateCardPage() {
             ></textarea>
             {errors.question && <p>{errors.question}</p>}
 
-            <label className="input__label">option 1</label>
+            <div className="create-card__label-container">
+              <label className="input__label">option 1</label>
+              <button
+                onClick={selAnswer}
+                id="option_1"
+                disabled={!inputValue.option_1}
+                className={!isAnswer.option_1 && 'unselected'}
+              >
+                {isAnswer.option_1 ? 'unset as answer' : 'set as answer'}
+              </button>
+            </div>
             <textarea
               className="create-card__option"
               type="text"
@@ -157,11 +188,18 @@ function CreateCardPage() {
               value={inputValue.option_1}
             ></textarea>
             {errors.option_1 && <p>{errors.option_1}</p>}
-            <button onClick={selAnswer} id="option_1">
-              {isAnswer.option_1 ? 'unset as answer' : 'set as answer'}
-            </button>
 
-            <label className="input__label">option 2</label>
+            <div className="create-card__label-container">
+              <label className="input__label">option 2</label>
+              <button
+                onClick={selAnswer}
+                id="option_2"
+                disabled={!inputValue.option_2}
+                className={!isAnswer.option_2 && 'unselected'}
+              >
+                {isAnswer.option_2 ? 'unset as answer' : 'set as answer'}
+              </button>
+            </div>
             <textarea
               className="create-card__option"
               type="text"
@@ -172,11 +210,18 @@ function CreateCardPage() {
               value={inputValue.option_2}
             ></textarea>
             {errors.option_2 && <p>{errors.option_2}</p>}
-            <button onClick={selAnswer} id="option_2">
-              {isAnswer.option_2 ? 'unset as answer' : 'set as answer'}
-            </button>
 
-            <label className="input__label">option 3</label>
+            <div className="create-card__label-container">
+              <label className="input__label">option 3</label>
+              <button
+                onClick={selAnswer}
+                id="option_3"
+                disabled={!inputValue.option_3}
+                className={!isAnswer.option_3 && 'unselected'}
+              >
+                {isAnswer.option_3 ? 'unset as answer' : 'set as answer'}
+              </button>
+            </div>
             <textarea
               className="create-card__option"
               type="text"
@@ -187,9 +232,6 @@ function CreateCardPage() {
               value={inputValue.option_3}
             ></textarea>
             {errors.option_3 && <p>{errors.option_3}</p>}
-            <button onClick={selAnswer} id="option_3">
-              {isAnswer.option_3 ? 'unset as answer' : 'set as answer'}
-            </button>
           </>
         )}
         {count === 2 && (
@@ -218,31 +260,38 @@ function CreateCardPage() {
             {errors.explanation && <p>{errors.explanation}</p>}
           </>
         )}
+        {errors.submit && <p>{errors.submit}</p>}
 
-        <button
-          onClick={previous}
-          disabled={count === 1}
-          className={
-            count === 1 ? 'create-card__previous-button-disabled' : 'create-card__page-button'
-          }
-        >
-          previous
-        </button>
-        <button
-          onClick={next}
-          disabled={count === 2}
-          className={count === 2 ? 'create-card__next-button-disabled' : 'create-card__page-button'}
-        >
-          next
-        </button>
-        <input
-          type="submit"
-          disabled={count !== 2}
-          className={count === 2 ? 'create-card__page-button' : 'create-card__save-button-disabled'}
-          value="save"
-        />
+        <div className="create-card__button-container">
+          <button
+            onClick={previous}
+            disabled={count === 1}
+            className={count === 1 ? 'create-card__button-disabled' : 'create-card__page-button'}
+          >
+            previous
+          </button>
+          <button
+            onClick={next}
+            disabled={count === 2}
+            className={
+              count === 2 ? 'create-card__next-button-disabled' : 'create-card__page-button'
+            }
+          >
+            next
+          </button>
+          <input
+            type="submit"
+            className={
+              count === 2 ? 'create-card__page-button' : 'create-card__save-button-disabled'
+            }
+            value="save"
+          />
+        </div>
       </form>
-      <CardEdit data={inputValue} count={count} />
+      <div className="create-card__preview-container">
+        <h3>Preview</h3>
+        <CardEdit data={inputValue} count={count} />
+      </div>
     </div>
   );
 }

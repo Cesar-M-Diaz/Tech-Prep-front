@@ -11,10 +11,7 @@ function Layout(props) {
   return (
     <>
       <Navbar toggleMenu={toggleMenu} />
-      <div className={`layout__container-mobile${active ? '-active' : '-hidden'}`}>
-        {props.children}
-      </div>
-      <div className="layout__container">{props.children}</div>
+      <div className={`layout__container${active ? '-active' : '-hidden'}`}>{props.children}</div>
       <Footer />
     </>
   );
