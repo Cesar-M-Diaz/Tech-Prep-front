@@ -207,3 +207,56 @@ p {
     letter-spacing: 2px;
   }
 }
+
+@media (min-width: 768px) {
+  .create-card__page-body {
+    width: 70%;
+    height: 70%;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+}
+
+@media (min-width: 992px) {
+  .create-card__page-body {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 992px;
+    height: auto;
+    margin: 0 auto;
+    padding: 20px 20px 0 20px;
+  }
+  .create-card__preview-container {
+    width: 50%;
+    h3 {
+      margin-top: 20px;
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+    }
+  }
+  .create-card__form {
+    width: 50%;
+    h3 {
+      margin-top: 20px;
+    }
+  }
+  .create-card__button-container {
+    height: auto;
+    .create-card__page-button {
+      margin-bottom: 0;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .create-card__page-body {
+    width: 1200px;
+  }
+  .create-card__preview-container {
+    width: 40%;
+  }
+  .create-card__form {
+    width: 45%;
+  }
+}
