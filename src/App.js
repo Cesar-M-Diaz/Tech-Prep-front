@@ -7,6 +7,7 @@ import Layout from './components/Layout';
 import HomePage from './pages/HomePage';
 import Profile from './pages/Profile';
 import CreateCard from './pages/CreateCardPage';
+import SelectLevelPage from './pages/SelectLevelPage';
 import './assets/styles/pages/App.css';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route exact path="/home" component={HomePage} />
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/add_questions" component={CreateCard} />
+          <Route exact path="/train" component={SelectLevelPage} />
         </Layout>
       </Switch>
     </Router>
