@@ -68,12 +68,12 @@
     font-size: 1.5rem;
     font-weight: 400;
     color: $button-color-hover;
+    text-align: justify;
+    text-justify: distribute;
   }
   h3 {
     font-family: 'Open Sans', sans-serif;
     padding: 0;
-    text-align: justify;
-    text-justify: distribute;
     text-align: center;
     width: 100%;
     font-size: 1.1rem;
