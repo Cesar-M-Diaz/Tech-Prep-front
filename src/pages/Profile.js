@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
 import '../assets/styles/pages/Profile.scss';
 
 function Profile() {
@@ -10,18 +9,26 @@ function Profile() {
     email: true,
     password: true,
   });
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-  } = useForm({
-    mode: 'onTouched',
+  const [userData, setUserData] = useState({
+    name: '',
+    email: '',
+    password: '',
+  });
+  const [errors, setErrors] = useState({
+    name: '',
+    email: '',
+    password: '',
+    submit: '',
   });
 
   function onChangeFile(e) {
     e.preventDefault();
     setImage(e.target.files[0]);
     setPreviewPhoto(URL.createObjectURL(e.target.files[0]));
+    setErrors((prevState) => ({
+      ...prevState,
+      submit: true,
+    }));
   }
 
   const handleClick = (e) => {
@@ -39,14 +46,79 @@ function Profile() {
     }
   };
 
-  const onSubmit = async (data, e) => {
-    e.preventDefault();
-    console.log(data);
-    const formData = new FormData();
-    if (image) {
-      formData.append('image', image);
+  function validateInputs(e) {
+    const value = e.target.value;
+    // console.log(value.length);
+    const name = e.target.name;
+    // console.log(name);
+    const emailRegex =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const nameRegex =
+      /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/g;
+    if (value.length <= 0) {
+      setErrors((prevState) => ({
+        ...prevState,
+        [name]: 'Field is required',
+        submit: false,
+      }));
+    } else if (name === 'email' && !emailRegex.test(String(value).toLowerCase())) {
+      setErrors((prevState) => ({
+        ...prevState,
+        [name]: 'Type a valid email',
+        submit: false,
+      }));
+    } else if (name === 'name' && !nameRegex.test(String(value).toLowerCase())) {
+      setErrors((prevState) => ({
+        ...prevState,
+        [name]: 'Name must only contain letters',
+        submit: false,
+      }));
+    } else if (name === 'password' && value.length < 7) {
+      setErrors((prevState) => ({
+        ...prevState,
+        [name]: 'Password is to weak',
+        submit: false,
+      }));
+    } else if (name === 'name' && value.length <= 2) {
+      setErrors((prevState) => ({
+        ...prevState,
+        [name]: 'This is to short to be a real name',
+        submit: false,
+      }));
+    } else {
+      setErrors((prevState) => ({
+        ...prevState,
+        [name]: false,
+        submit: true,
+      }));
     }
-    // updateTutorProfile(data, formData, token);
+  }
+
+  function handleChange(e) {
+    e.preventDefault();
+    const value = e.target.value;
+    const name = e.target.name;
+    setUserData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (errors.submit) {
+      console.log(userData);
+      const formData = new FormData();
+      if (image) {
+        formData.append('image', image);
+      }
+      // updateTutorProfile(data, formData, token);
+    } else {
+      setErrors((prevState) => ({
+        ...prevState,
+        submit: 'Please change the field you want to update or upload a new picture',
+      }));
+    }
   };
 
   // const updateTutorProfile = async (data, formData, token) => {
@@ -68,7 +140,7 @@ function Profile() {
     <main className="profile__body">
       <div className="profile__backgroud-shape-2"></div>
       <div className="profile__backgroud-shape-1"></div>
-      <form className="profile__card-body" onSubmit={handleSubmit(onSubmit)}>
+      <form className="profile__card-body" onSubmit={handleSubmit}>
         <h1>hello internet citizen this is your tech-prep id</h1>
         <div className="profile__card-body-container">
           <div className="profile__photo-container">
@@ -90,54 +162,50 @@ function Profile() {
               <input
                 type="text"
                 disabled={isDisabled.name}
-                {...register('name', {
-                  required: true,
-                  pattern:
-                    /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/g,
-                })}
+                name="name"
+                onBlur={validateInputs}
+                value={userData.name}
                 placeholder="Name"
+                onChange={handleChange}
               />
               <button className="profile__button-edit-name" onClick={handleClick}>
                 edit
               </button>
             </div>
-            {(errors.name?.type === 'required' && <p>Name is required</p>) ||
-              (errors.name?.type === 'pattern' && <p>Name must only contain letters</p>)}
+            {errors.name && <p className="profile__error">{errors.name}</p>}
             <label className="input__label">Email</label>
             <div className="profile__input-container">
               <input
                 type="email"
                 disabled={isDisabled.email}
-                {...register('email', {
-                  required: true,
-                  pattern:
-                    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                })}
+                name="email"
                 placeholder="Email"
+                onBlur={validateInputs}
+                value={userData.email}
+                onChange={handleChange}
               />
               <button className="profile__button-edit-email" onClick={handleClick}>
                 edit
               </button>
             </div>
-            {(errors.email?.type === 'required' && <p>Email is required</p>) ||
-              (errors.email?.type === 'pattern' && <p>Please enter a valid email</p>)}
+            {errors.email && <p className="profile__error">{errors.email}</p>}
             <label className="input__label">Password</label>
             <div className="profile__input-container">
               <input
                 disabled={isDisabled.password}
                 type="password"
-                {...register('password', {
-                  required: true,
-                  minLength: 5,
-                })}
+                name="password"
                 placeholder="Password"
+                onBlur={validateInputs}
+                onChange={handleChange}
+                value={userData.password}
               />
               <button className="profile__button-edit-password" onClick={handleClick}>
                 edit
               </button>
             </div>
-            {(errors.password?.type === 'required' && <p>Password is required</p>) ||
-              (errors.password?.type === 'minLength' && <p>Password is to short</p>)}
+            {errors.password && <p className="profile__error">{errors.password}</p>}
+            {errors.submit.length > 0 && <p className="profile__error">{errors.submit}</p>}
             <button className="profile__button-submit">save changes</button>
           </div>
         </div>
