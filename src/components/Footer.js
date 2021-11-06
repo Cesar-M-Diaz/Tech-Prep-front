@@ -8,7 +8,9 @@ function Footer() {
       <div className="footer-text__container">
         <p>2021 Tech-prep</p>
         <p>built for the Dev Community</p>
-        <p>github repo</p>
+        <p>
+          <a href="https://github.com/Cesar-M-Diaz/Tech-Prep-front">github repo</a>
+        </p>
       </div>
     </section>
   );

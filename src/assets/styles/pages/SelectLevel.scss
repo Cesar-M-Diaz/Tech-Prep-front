@@ -1,0 +1,349 @@
+@import '../../../index.scss';
+
+.level__page-body {
+  display: flex;
+  box-sizing: border-box;
+  margin: auto 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 70px - 45px);
+  width: 100%;
+  padding: 20px;
+}
+
+.level__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  // height: 100%;
+  width: 100%;
+  h2 {
+    color: $text-color;
+  }
+}
+
+.level__button-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: 30px;
+  margin-top: 10px;
+  p {
+    margin: 0;
+    padding: 0 15px;
+    width: 75px;
+    text-align: center;
+    color: $unselected-color;
+  }
+  .level__collapsible-a {
+    transition: 0.5s;
+    width: 10%;
+    height: 30px;
+    background-color: $unselected-color;
+  }
+  .level__collapsible-b {
+    transition: 0.5s;
+    width: 70%;
+    height: 30px;
+    background-color: $unselected-color;
+  }
+  &:hover {
+    cursor: pointer;
+    .level__collapsible-a {
+      transition: 0.5s;
+      width: 37%;
+      height: 30px;
+      background-color: $button-color-hover;
+    }
+    .level__collapsible-b {
+      transition: 0.5s;
+      width: 40%;
+      background-color: $button-color-hover;
+    }
+    p {
+      color: $button-color-hover;
+    }
+  }
+}
+
+.level__button-container-selected {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: 30px;
+  margin-top: 10px;
+  p {
+    margin: 0;
+    padding: 0 20px;
+    width: 70px;
+    text-align: center;
+    color: $button-color-hover;
+  }
+  .level__collapsible-a {
+    transition: 0.5s;
+    width: 37%;
+    height: 30px;
+    background-color: $button-color-hover;
+  }
+  .level__collapsible-b {
+    transition: 0.5s;
+    width: 40%;
+    height: 30px;
+    background-color: $button-color-hover;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.level__technologies-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  // height: 100%;
+  width: 100%;
+  h2 {
+    color: $text-color;
+    margin: 30px 0;
+  }
+}
+
+.level__technologies-cards-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.level__technology-card {
+  transition: 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100px;
+  padding: 20px 0;
+  width: 100%;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+  margin-bottom: 30px;
+  p {
+    padding: 0;
+    color: $unselected-color;
+    margin: 0;
+    font-size: 1.2rem;
+  }
+  &:hover {
+    background-color: $button-color-hover;
+    cursor: pointer;
+    p {
+      color: white;
+    }
+  }
+}
+
+.level__technology-card-selected {
+  transition: 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  min-height: 200px;
+  padding: 20px 0;
+  width: 100%;
+  background-color: white;
+  border-radius: 10px;
+  border: 2px solid $button-color-hover;
+  box-shadow: 0px 0px 10px 0px $button-color-hover;
+  margin-bottom: 30px;
+  p {
+    padding: 0;
+    color: $button-color-hover;
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  h3 {
+    font-family: 'Open Sans', sans-serif;
+    color: $text-color;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 400;
+    width: 80%;
+  }
+  .level__technology-card-select__container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    height: 40px;
+    margin-top: 10px;
+    select {
+      width: 65%;
+      height: 40px;
+      border: 2px solid $unselected-color;
+      border-radius: 5px;
+      color: $text-color;
+      font-family: 'Open Sans', sans-serif;
+      padding: 0 10px;
+      font-size: 0.8rem;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    button {
+      width: 30%;
+      height: 40px;
+      background-color: white;
+      border: 2px solid $button-color;
+      border-radius: 5px;
+      color: $button-color;
+      font-size: 1.2rem;
+      font-weight: 400;
+      &:hover {
+        cursor: pointer;
+        color: white;
+        background-color: $button-color-hover;
+        border: 2px solid $button-color-hover;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .level__page-body {
+    width: 600px;
+    margin: auto;
+    min-height: calc(100vh - 170px);
+  }
+  .level__button-container {
+    p {
+      width: 100px;
+    }
+    .level__collapsible-a {
+      width: 10%;
+    }
+    .level__collapsible-b {
+      width: 70%;
+    }
+    &:hover {
+      cursor: pointer;
+      .level__collapsible-a {
+        width: 37%;
+      }
+      .level__collapsible-b {
+        width: 40%;
+      }
+    }
+  }
+
+  .level__button-container-selected {
+    p {
+      width: 100px;
+    }
+    .level__collapsible-a {
+      width: 37%;
+    }
+    .level__collapsible-b {
+      width: 40%;
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .level__page-body {
+    flex-direction: row;
+    align-items: flex-start;
+    width: 992px;
+  }
+  .level__container {
+    width: 40%;
+    h2 {
+      margin-top: 50px;
+      margin-bottom: 200px;
+    }
+  }
+  .level__button-container {
+    width: 80%;
+  }
+
+  .level__button-container-selected {
+    width: 80%;
+  }
+
+  .level__technologies-container {
+    width: 60%;
+    h2 {
+      margin-top: 50px;
+      margin-bottom: 100px;
+    }
+  }
+  .level__technology-card {
+    width: 80%;
+  }
+
+  .level__technology-card-selected {
+    width: 80%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .level__page-body {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 1200px;
+  }
+  .level__container {
+    width: 25%;
+    h2 {
+      margin-top: 50px;
+      margin-bottom: 200px;
+    }
+  }
+  .level__button-container {
+    width: 80%;
+  }
+
+  .level__button-container-selected {
+    width: 80%;
+  }
+
+  .level__technologies-container {
+    width: 70%;
+    h2 {
+      margin-top: 50px;
+      margin-bottom: 100px;
+    }
+  }
+  .level__technologies-cards-container {
+    flex-direction: row;
+    height: 300px;
+    width: 100%;
+    margin: auto 0;
+  }
+  .level__technology-card {
+    width: 70%;
+    margin: 0 20px;
+  }
+
+  .level__technology-card-selected {
+    width: 80%;
+    margin: 0 20px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .level__page-body {
+    width: 1400px;
+  }
+}
