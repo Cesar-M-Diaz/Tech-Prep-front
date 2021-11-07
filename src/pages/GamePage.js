@@ -3,12 +3,12 @@ import GameCard from '../components/GameCard';
 import Slider from 'react-slick';
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 import '../assets/styles/pages/ResultPage.scss';
-import soundtrack from '../assets/audio/soundtrack.mp3';
+// import soundtrack from '../assets/audio/soundtrack.mp3';
 
 function ResultPage() {
-  const [result, setResult] = useState(12);
-  const [questionsNumber, setQuestionsNumber] = useState(15);
-  const [page, setPage] = useState(1);
+  // const [result, setResult] = useState(12);
+  // const [questionsNumber, setQuestionsNumber] = useState(15);
+  // const [page, setPage] = useState(1);
   const [imageIndex, setImageIndex] = useState(0);
   // const [answers, setAnswers] = useState('');
 
@@ -96,6 +96,7 @@ function ResultPage() {
     <div className="game-questions-container">
       <button>audio on</button>
       <button>quit game</button>
+      <button>finish</button>
       <Slider {...settings}>
         {answers?.map((answer, idx) => (
           <div className={idx === imageIndex ? 'game-slide-active-slide' : 'game-slide'}>
