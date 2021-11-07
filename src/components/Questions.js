@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../assets/styles/components/Question.scss';
 
-function Questions({ card, count }) {
+function Questions({ card }) {
   const [flip, setFlip] = useState(false);
 
   function handleClick(e) {
