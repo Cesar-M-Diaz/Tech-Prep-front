@@ -1,0 +1,59 @@
+@import '~slick-carousel/slick/slick.css';
+@import '~slick-carousel/slick/slick-theme.css';
+@import '../../../index.scss';
+
+.game-questions-container {
+  width: 100%;
+  // height: calc(100vh - 170px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: auto;
+}
+
+.game-slide {
+  transform: scale(0.7);
+  transition: transform 300ms;
+  // opacity: 0.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-slide-active-slide {
+  transform: scale(1);
+  opacity: 1;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.arrow {
+  position: absolute;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.arrow svg {
+  transition: color 300ms;
+  color: $button-color;
+  width: 30px;
+  height: 30px;
+}
+
+.arrow svg:hover {
+  color: $button-color-hover;
+}
+
+.next {
+  right: 0%;
+  top: 50%;
+  margin: 5px;
+}
+
+.prev {
+  left: 0%;
+  top: 50%;
+  margin: 5px;
+}
