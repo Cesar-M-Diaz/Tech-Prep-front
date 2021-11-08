@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import GameCard from '../components/GameCard';
+import CountDown from '../components/CountDown';
 import Slider from 'react-slick';
 import history from '../utils/history';
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
@@ -7,11 +8,11 @@ import '../assets/styles/pages/GamePage.scss';
 // import soundtrack from '../assets/audio/soundtrack.mp3';
 
 function ResultPage() {
-  // const [result, setResult] = useState(12);
-  // const [questionsNumber, setQuestionsNumber] = useState(15);
+  const [questionsNumber] = useState(15);
   const [imageIndex, setImageIndex] = useState(0);
   const [answers, setAnswers] = useState({});
   const [wrongAnswers, setWrongAnswers] = useState([]);
+
   const NextArrow = ({ onClick }) => {
     return (
       <div className="arrow next" onClick={onClick}>
@@ -29,12 +30,14 @@ function ResultPage() {
   };
 
   const settings = {
+    swipeToSlide: true,
     infinite: true,
     speed: 300,
     slidesToShow: 3,
     slidesToScroll: 1,
     initialSlide: 0,
     centerMode: true,
+    centerPadding: '0px',
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     beforeChange: (current, next) => setImageIndex(next),
@@ -42,6 +45,7 @@ function ResultPage() {
       {
         breakpoint: 992,
         settings: {
+          centerMode: false,
           slidesToShow: 1,
           slidesToScroll: 1,
         },
@@ -98,15 +102,27 @@ function ResultPage() {
         setWrongAnswers((prev) => [...prev, answer]);
       }
     });
-    history.push('/result');
+    history.push('/train/score');
   }
+
+  let onTimesup = () => {
+    Object.keys(answers).forEach((answer) => {
+      if (answers[answer] === 'wrong') {
+        setWrongAnswers((prev) => [...prev, answer]);
+      }
+    });
+    history.push('/train/score');
+  };
+
   console.log(wrongAnswers);
   console.log(answers);
 
   return (
     <div className="game-page">
       <div className="game-top">
-        <h1>time left 10:00 min</h1>
+        <h1>
+          time left <CountDown onTimesup={onTimesup} duration={questionsNumber * 60} /> min
+        </h1>
       </div>
       <div className="game-questions-container">
         <Slider {...settings}>

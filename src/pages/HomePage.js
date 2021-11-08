@@ -9,30 +9,33 @@ function HomePage() {
   const questionsData = [
     {
       id: 1,
-      title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      option1: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      option2: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      option3: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      question: '¿Cuál es la capital de México?',
+      option_1: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      option_2: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      option_3: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       explanation:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure mollitia doloremque inventore accusamus quae quod cumque voluptate dolorem labore ea. Atque odit est tempora quam architecto dolorum dolorem doloremque natus!',
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque omnis corrupti, quibusdam quis autem aliquid deserunt voluptates repudiandae ducimus dolorum molestias nihil ipsa! Quam eveniet delectus officiis vitae at quaerat? Neque dicta, recusandae totam eos nam facere perspiciatis ipsa aspernatur rerum quam inventore.',
+      title: 'recursion',
     },
     {
       id: 2,
-      title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      option1: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      option2: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      option3: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      question: '¿Cuál es la capital de colombia?',
+      option_1: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      option_2: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      option_3: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       explanation:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure mollitia doloremque inventore accusamus quae quod cumque voluptate dolorem labore ea. Atque odit est tempora quam architecto dolorum dolorem doloremque natus!',
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque omnis corrupti, quibusdam quis autem aliquid deserunt voluptates repudiandae ducimus dolorum molestias nihil ipsa! Quam eveniet delectus officiis vitae at quaerat? Neque dicta, recusandae totam eos nam facere perspiciatis ipsa aspernatur rerum quam inventore.',
+      title: 'recursion 2',
     },
     {
       id: 3,
-      title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      option1: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      option2: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      option3: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      question: '¿Cuál es la capital de chile?',
+      option_1: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      option_2: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      option_3: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       explanation:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure mollitia doloremque inventore accusamus quae quod cumque voluptate dolorem labore ea. Atque odit est tempora quam architecto dolorum dolorem doloremque natus!',
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque omnis corrupti, quibusdam quis autem aliquid deserunt voluptates repudiandae ducimus dolorum molestias nihil ipsa! Quam eveniet delectus officiis vitae at quaerat? Neque dicta, recusandae totam eos nam facere perspiciatis ipsa aspernatur rerum quam inventore.',
+      title: 'recursion 3',
     },
   ];
 
@@ -48,8 +51,8 @@ function HomePage() {
       <div className="home__questions-container">
         <h1>last questions added by the community</h1>
         <div className="home__questions">
-          {questionsData.map((card) => (
-            <Questions key={card.id} card={card} />
+          {questionsData.map((question) => (
+            <Questions key={question.id} data={question} />
           ))}
         </div>
       </div>

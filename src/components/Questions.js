@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../assets/styles/components/Question.scss';
 
-function Questions({ card }) {
+function Questions({ data }) {
   const [flip, setFlip] = useState(false);
 
   function handleClick(e) {
@@ -13,24 +13,24 @@ function Questions({ card }) {
       <div className="question__flip">
         <div className={`question__inner-flip ${flip && 'showBack'}`}>
           <div className="question__front-flip">
-            <h3>{card?.title}</h3>
+            <h3>{data?.question}</h3>
             <div className="question-option__container">
               <div></div>
-              <p>{card?.option1}</p>
+              <p>{data?.option_1}</p>
             </div>
             <div className="question-option__container">
               <div></div>
-              <p>{card?.option2}</p>
+              <p>{data?.option_2}</p>
             </div>
             <div className="question-option__container">
               <div></div>
-              <p>{card?.option3}</p>
+              <p>{data?.option_3}</p>
             </div>
           </div>
           <div className="question__back-flip">
-            <h2>{card?.title}</h2>
+            <h2>{data?.title}</h2>
             <div className="question__explanation-container">
-              <p>{card?.explanation}</p>
+              <p>{data?.explanation}</p>
             </div>
           </div>
         </div>
