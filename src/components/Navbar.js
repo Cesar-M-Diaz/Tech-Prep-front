@@ -15,7 +15,14 @@ function Navbar({ toggleMenu }) {
     e.preventDefault();
     const { id } = e.target;
     const pathname = id.split('-')[0];
-    if (id.match(/-m/)) {
+
+    if (id === 'home__m' || id === 'home__d') {
+      history.push('/home');
+      setToggleSecondaryMenu(false);
+    } else if (id === 'logout-m' || id === 'logout-d') {
+      history.push('/');
+      setToggleSecondaryMenu(false);
+    } else if (id.match(/-m/)) {
       toggleMenu(setMenu(!menu));
       if (!pathname.match(/__/) && !pathname.match(/logout/)) {
         history.push(`/${pathname}`);
@@ -25,9 +32,6 @@ function Navbar({ toggleMenu }) {
       if (!pathname.match(/__/) && !pathname.match(/logout/)) {
         history.push(`/${pathname}`);
       }
-    } else if (id === 'home__m' || id === 'home__d') {
-      history.push('/home');
-      setToggleSecondaryMenu(false);
     }
   }
 

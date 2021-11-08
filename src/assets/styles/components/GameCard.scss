@@ -126,7 +126,7 @@
       margin: 10px 0;
       color: $text-color;
     }
-    div {
+    button {
       width: 10px;
       height: 10px;
       border-radius: 50%;
@@ -134,6 +134,10 @@
       border: none;
       background-color: $unselected-color;
       margin-right: 1rem;
+      &:hover {
+        background-color: $button-color-hover;
+        cursor: pointer;
+      }
     }
   }
 }
