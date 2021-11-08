@@ -133,13 +133,25 @@
   align-items: center;
 }
 
+@media (min-width: 600px) {
+  .game-controls {
+    margin: 0 auto 40px auto;
+    width: 350px;
+    justify-content: space-evenly;
+    .game__button-container {
+      flex-direction: row;
+      width: 100%;
+    }
+  }
+}
+
 @media (min-width: 992px) {
   .game-page {
     box-sizing: border-box;
     width: 100%;
     min-height: calc(100vh - 170px);
     justify-content: space-evenly;
-    padding: 25px;
+    padding: 10px 25px;
   }
   .game-questions-container {
     width: 100%;

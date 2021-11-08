@@ -6,9 +6,9 @@
   // flex-direction: column;
   // align-items: center;
   // justify-content: center;
-  margin: 35px auto;
-  box-sizing: border-box;
-  height: 500px;
+  margin: 50px auto;
+  width: 75%;
+  min-height: 400px;
   transition: 200ms;
   border-radius: 20px;
 }
@@ -144,6 +144,18 @@
 
 .game-card__flip-card-back {
   transform: rotateY(180deg);
+}
+
+@media (min-width: 500px) {
+  .game-card__base {
+    width: 350px;
+    height: 500px;
+  }
+
+  .game-card__flip-card {
+    // width: 100%;
+    height: 500px;
+  }
 }
 
 @media (min-width: 768px) {
