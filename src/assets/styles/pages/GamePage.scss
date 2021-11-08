@@ -29,9 +29,11 @@
     height: 30px;
     margin-top: 10px;
     p {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 1rem;
       margin: 0;
       padding: 0 15px;
-      width: 75px;
+      width: 100px;
       text-align: center;
       color: $unselected-color;
     }

@@ -9,7 +9,6 @@ function ResultPage() {
   const [result] = useState(12);
   const [questionsNumber] = useState(15);
   const [page, setPage] = useState(1);
-  const [imageIndex, setImageIndex] = useState(0);
   // const [answers, setAnswers] = useState('');
 
   const NextArrow = ({ onClick }) => {
@@ -29,15 +28,14 @@ function ResultPage() {
   };
 
   const settings = {
-    infinite: true,
+    infinite: false,
     speed: 300,
     slidesToShow: 3,
     slidesToScroll: 1,
-    centerMode: true,
+    centerMode: false,
     centerPadding: '0px',
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
-    beforeChange: (current, next) => setImageIndex(next),
     responsive: [
       {
         breakpoint: 992,
@@ -150,8 +148,8 @@ function ResultPage() {
           </div>
           <div className="score-answers-container">
             <Slider {...settings}>
-              {answers?.map((answer, idx) => (
-                <div className={idx === imageIndex ? 'score-slide-active-slide' : 'score-slide'}>
+              {answers?.map((answer) => (
+                <div className="score-slide">
                   <Questions data={answer} />
                 </div>
               ))}

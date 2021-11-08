@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import GameCard from '../components/GameCard';
 import CountDown from '../components/CountDown';
 import Slider from 'react-slick';
@@ -10,6 +10,7 @@ import '../assets/styles/pages/GamePage.scss';
 function ResultPage() {
   const [questionsNumber] = useState(15);
   const [imageIndex, setImageIndex] = useState(0);
+  const [isAnswered, setIsAnswered] = useState([]);
   const [answers, setAnswers] = useState({});
   const [wrongAnswers, setWrongAnswers] = useState([]);
 
@@ -92,8 +93,52 @@ function ResultPage() {
     },
   ];
 
+  useEffect(() => {
+    const mockQuestions = [
+      {
+        id: 1,
+        answer: 'answer Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        option_1: 'answer Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        option_2: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        option_3: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        question:
+          '1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure mollitia doloremque inventore accusamus quae quod cumque voluptate dolorem labore ea.',
+      },
+      {
+        id: 2,
+        answer: 'answer Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        option_1: 'answer Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        option_2: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        option_3: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        question:
+          '2 Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure mollitia doloremque inventore accusamus quae quod cumque voluptate dolorem labore ea.',
+      },
+      {
+        id: 3,
+        answer: 'answer Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        option_1: 'answer Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        option_2: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        option_3: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        question:
+          '3 Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure mollitia doloremque inventore accusamus quae quod cumque voluptate dolorem labore ea.',
+      },
+      {
+        id: 4,
+        answer: 'answer Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        option_1: 'answer Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        option_2: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        option_3: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        question:
+          '4 Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure mollitia doloremque inventore accusamus quae quod cumque voluptate dolorem labore ea.',
+      },
+    ];
+    mockQuestions.map((question) => setAnswers((prev) => ({ ...prev, [question.id]: 'wrong' })));
+  }, []);
+
   function assignAnswers(answer, status) {
     setAnswers((prev) => ({ ...prev, [answer]: status }));
+    setIsAnswered((prev) => ({ ...prev, [answer]: true }));
+    console.log(answers);
   }
 
   function submitAnswers() {
@@ -111,11 +156,9 @@ function ResultPage() {
         setWrongAnswers((prev) => [...prev, answer]);
       }
     });
+    console.log(wrongAnswers);
     history.push('/train/score');
   };
-
-  console.log(wrongAnswers);
-  console.log(answers);
 
   return (
     <div className="game-page">
@@ -136,7 +179,7 @@ function ResultPage() {
       <div className="game-controls">
         <div
           className={
-            Object.keys(answers).length === mockQuestions.length
+            Object.keys(isAnswered).length === mockQuestions.length
               ? 'game__button-container'
               : 'game__button-container-hidden'
           }

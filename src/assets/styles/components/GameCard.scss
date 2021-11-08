@@ -126,18 +126,31 @@
       margin: 10px 0;
       color: $text-color;
     }
-    button {
+    div {
       width: 10px;
       height: 10px;
       border-radius: 50%;
       padding: 0;
       border: none;
       background-color: $unselected-color;
-      margin-right: 1rem;
-      &:hover {
+      margin-right: 10px;
+    }
+    &.selected {
+      div {
         background-color: $button-color-hover;
-        cursor: pointer;
       }
+      p {
+        color: $button-color-hover;
+      }
+    }
+    &:hover {
+      p {
+        color: $button-color-hover;
+      }
+      div {
+        background-color: $button-color-hover;
+      }
+      cursor: pointer;
     }
   }
 }
