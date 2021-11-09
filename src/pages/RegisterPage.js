@@ -23,7 +23,11 @@ function RegisterPage() {
 
   const onSubmit = (data, e) => {
     e.preventDefault();
-    dispatch(registerAction(data));
+    const registerData = {
+      ...data,
+      profile_photo: 'https://therminic2018.eu/wp-content/uploads/2018/07/dummy-avatar-300x300.jpg',
+    };
+    dispatch(registerAction(registerData));
   };
 
   useEffect(() => {

@@ -14,10 +14,10 @@ const swalStyled = Swal.mixin({
   buttonsStyling: false,
 });
 
-export function register(data) {
+export function register(registerData) {
   return async function (dispatch) {
     try {
-      const response = await axios.post('/register', { data });
+      const response = await axios.post('/register', registerData);
       const token = response.data.token;
       const userData = response.data.userData;
       localStorage.setItem(TOKEN, token);
