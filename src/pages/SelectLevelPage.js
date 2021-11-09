@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../assets/styles/pages/SelectLevel.scss';
+import history from '../utils/history';
 
 function SelectLevelPage() {
   const [showAmmount, setShowAmmount] = useState({
@@ -37,6 +38,7 @@ function SelectLevelPage() {
     if (questionNumber === '' || level === '') {
       alert('Please select the level and number of questions');
     } else {
+      history.push(`train/game`);
       console.log({ technology: technology, level: level, questionNumber: questionNumber });
     }
   }
@@ -79,7 +81,7 @@ function SelectLevelPage() {
             }
           >
             {!showAmmount.javascript ? (
-              <p onClick={selectTech} id="javascript">
+              <p onClick={selectTech} id="javascript" className="level__select-card">
                 JavaScript
               </p>
             ) : (
@@ -106,7 +108,7 @@ function SelectLevelPage() {
             }
           >
             {!showAmmount.react ? (
-              <p onClick={selectTech} id="react">
+              <p onClick={selectTech} id="react" className="level__select-card">
                 React
               </p>
             ) : (

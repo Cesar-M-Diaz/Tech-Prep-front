@@ -6,8 +6,12 @@ import '../assets/styles/components/Navbar.scss';
 import { FiMenu } from 'react-icons/fi';
 import { MdClose } from 'react-icons/md';
 import { IconContext } from 'react-icons';
+import { useDispatch, useSelector } from 'react-redux';
+import logout from '../actions/logout';
 
 function Navbar({ toggleMenu }) {
+  const profilePhotoUser = useSelector((state) => state.currentUser.profile_photo);
+  const dispatch = useDispatch();
   const [menu, setMenu] = useState(false);
   const [toggleSecondaryMenu, setToggleSecondaryMenu] = useState(false);
 
@@ -15,7 +19,16 @@ function Navbar({ toggleMenu }) {
     e.preventDefault();
     const { id } = e.target;
     const pathname = id.split('-')[0];
-    if (id.match(/-m/)) {
+
+    // a little experiment with history instead of using react-router-dom <Link/>
+    if (id === 'home__m' || id === 'home__d') {
+      history.push('/home');
+      setToggleSecondaryMenu(false);
+    } else if (id === 'logout-m' || id === 'logout-d') {
+      dispatch(logout());
+      history.push('/');
+      setToggleSecondaryMenu(false);
+    } else if (id.match(/-m/)) {
       toggleMenu(setMenu(!menu));
       if (!pathname.match(/__/) && !pathname.match(/logout/)) {
         history.push(`/${pathname}`);
@@ -25,9 +38,6 @@ function Navbar({ toggleMenu }) {
       if (!pathname.match(/__/) && !pathname.match(/logout/)) {
         history.push(`/${pathname}`);
       }
-    } else if (id === 'home__m' || id === 'home__d') {
-      history.push('/home');
-      setToggleSecondaryMenu(false);
     }
   }
 
@@ -53,7 +63,7 @@ function Navbar({ toggleMenu }) {
             )}
           </div>
           <div className={`header-links__container-mobile${menu ? '-active' : '-hidden'}`}>
-            <img src="" alt="" />
+            <img src={profilePhotoUser} alt="" />
             <p onClick={handleClick} id="profile-m">
               profile
             </p>
@@ -66,9 +76,9 @@ function Navbar({ toggleMenu }) {
             <p onClick={handleClick} id="add_questions-m">
               add questions
             </p>
-            <p onClick={handleClick} id="resources-m">
+            {/* <p onClick={handleClick} id="resources-m">
               resources
-            </p>
+            </p> */}
           </div>
           <section className="header__container-wrapper">
             <div className="header__container">
@@ -90,10 +100,14 @@ function Navbar({ toggleMenu }) {
                 <p onClick={handleClick} id="add_questions-d">
                   add questions
                 </p>
-                <p onClick={handleClick} id="resources-d">
+                {/* <p onClick={handleClick} id="resources-d">
                   resources
-                </p>
-                <img src="" alt="" onClick={() => setToggleSecondaryMenu(!toggleSecondaryMenu)} />
+                </p> */}
+                <img
+                  src={profilePhotoUser}
+                  alt=""
+                  onClick={() => setToggleSecondaryMenu(!toggleSecondaryMenu)}
+                />
               </div>
             </div>
             <div

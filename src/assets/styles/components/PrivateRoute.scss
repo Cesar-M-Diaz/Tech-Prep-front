@@ -1,0 +1,22 @@
+@import '../../../index.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.html {
+  font-size: 16px;
+}
+
+.app-loading__message {
+  font-family: 'Source Code Pro', monospace;
+  font-size: 2rem;
+  font-weight: 800;
+  color: $button-color;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 300px;
+}

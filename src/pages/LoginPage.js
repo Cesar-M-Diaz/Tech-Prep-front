@@ -4,10 +4,14 @@ import { useForm } from 'react-hook-form';
 import history from '../utils/history';
 import logo from '../assets/images/logo techprep grueso.svg';
 import '../assets/styles/pages/Login.scss';
+import login from '../actions/login';
+import { useDispatch, useSelector } from 'react-redux';
 // import { FcGoogle } from 'react-icons/fc';
 // import { FaGithub } from 'react-icons/fa';
 
 function LoginPage() {
+  const globalState = useSelector((state) => state);
+  const dispatch = useDispatch();
   const {
     register,
     formState: { errors },
@@ -15,8 +19,16 @@ function LoginPage() {
   } = useForm({
     mode: 'onTouched',
   });
-  const onSubmit = () => history.push('/home');
-  // const onSubmit = (data) => console.log(data);
+  // const onSubmit = () => history.push('/home');
+
+  const onSubmit = async (data, e) => {
+    e.preventDefault();
+    await validateCredentials(data);
+  };
+
+  const validateCredentials = ({ email, password }) => {
+    dispatch(login({ email, password }));
+  };
 
   return (
     <main className="login-page__body">
@@ -65,6 +77,9 @@ function LoginPage() {
           />
           {(errors.password?.type === 'required' && <p>Password is required</p>) ||
             (errors.password?.type === 'minLength' && <p>Password is to short</p>)}
+          {globalState.login_failed && (
+            <span style={{ color: 'red' }}>Incorrect email or password, please try again.</span>
+          )}
           <button type="submit">Login</button>
         </section>
         <div className="link-text">

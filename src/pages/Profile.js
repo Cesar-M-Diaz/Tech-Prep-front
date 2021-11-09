@@ -1,8 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import axios from '../utils/axios';
+import history from '../utils/history';
 import '../assets/styles/pages/Profile.scss';
 
 function Profile() {
-  const [previewPhoto, setPreviewPhoto] = useState('');
+  const globalUser = useSelector((state) => state.currentUser);
+  const token = useSelector((state) => state.token);
+  const [previewPhoto, setPreviewPhoto] = useState(globalUser.profile_photo);
+  const [previewData, setPreviewData] = useState({
+    name: '',
+    email: '',
+  });
   const [image, setImage] = useState('');
   const [isDisabled, setIsDisabled] = useState({
     name: true,
@@ -20,6 +29,14 @@ function Profile() {
     password: '',
     submit: '',
   });
+
+  useEffect(() => {
+    setPreviewData((prevState) => ({
+      ...prevState,
+      name: globalUser.name,
+      email: globalUser.email,
+    }));
+  }, [globalUser]);
 
   function onChangeFile(e) {
     e.preventDefault();
@@ -107,12 +124,11 @@ function Profile() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (errors.submit) {
-      console.log(userData);
       const formData = new FormData();
       if (image) {
         formData.append('image', image);
       }
-      // updateTutorProfile(data, formData, token);
+      updateProfile(userData, formData, token);
     } else {
       setErrors((prevState) => ({
         ...prevState,
@@ -121,20 +137,20 @@ function Profile() {
     }
   };
 
-  // const updateTutorProfile = async (data, formData, token) => {
-  //   console.log(data);
-  //   try {
-  //     const { data: url } = await axios.patch('/uploadProfileImage', formData);
-  //     const response = await axios.patch('/update', {
-  //       data,
-  //       url,
-  //       token,
-  //     });
-  //     localStorage.setItem('token', response.data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const updateProfile = async (userData, formData, token) => {
+    try {
+      const { data: url } = await axios.patch('/uploadProfileImage', formData);
+      const response = await axios.patch('/update', {
+        userData,
+        url,
+        token,
+      });
+      localStorage.setItem('token', response.data);
+      history.go(0);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <main className="profile__body">
@@ -164,9 +180,9 @@ function Profile() {
                 disabled={isDisabled.name}
                 name="name"
                 onBlur={validateInputs}
-                value={userData.name}
                 placeholder="Name"
                 onChange={handleChange}
+                defaultValue={previewData.name}
               />
               <button className="profile__button-edit-name" onClick={handleClick}>
                 edit
@@ -181,8 +197,8 @@ function Profile() {
                 name="email"
                 placeholder="Email"
                 onBlur={validateInputs}
-                value={userData.email}
                 onChange={handleChange}
+                defaultValue={previewData.email}
               />
               <button className="profile__button-edit-email" onClick={handleClick}>
                 edit
@@ -198,7 +214,7 @@ function Profile() {
                 placeholder="Password"
                 onBlur={validateInputs}
                 onChange={handleChange}
-                value={userData.password}
+                defaultValue="123456789"
               />
               <button className="profile__button-edit-password" onClick={handleClick}>
                 edit
