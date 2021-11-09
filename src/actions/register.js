@@ -1,18 +1,7 @@
 import axios from '../utils/axios';
 import { REGISTER, TOKEN } from '../actions/constants';
 import history from '../utils/history';
-import Swal from 'sweetalert2';
-
-const swalStyled = Swal.mixin({
-  customClass: {
-    confirmButton: 'swal__confirm',
-    cancelButton: 'swal__cancel',
-    title: 'swal__title',
-    container: 'swal__text',
-    actions: 'swal__actions',
-  },
-  buttonsStyling: false,
-});
+import { swalStyled } from '../components/SwalCongfig';
 
 export function register(registerData) {
   return async function (dispatch) {
