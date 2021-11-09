@@ -1,4 +1,3 @@
-import React from 'react';
 import '../assets/styles/components/Loader.scss';
 
 function Loader() {

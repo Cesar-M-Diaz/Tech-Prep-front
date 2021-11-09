@@ -81,7 +81,7 @@
   }
   .home__questions-container {
     width: 100%;
-    height: 1050px;
+    height: 1100px;
     margin-bottom: 40px;
     h1 {
       margin-top: 70px;
@@ -104,6 +104,10 @@
   .home__questions-container {
     width: 100%;
     height: auto;
+    h1 {
+      margin-top: 45px;
+      margin-bottom: 45px;
+    }
   }
 }
 
