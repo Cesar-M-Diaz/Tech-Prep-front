@@ -81,7 +81,7 @@ function SelectLevelPage() {
             }
           >
             {!showAmmount.javascript ? (
-              <p onClick={selectTech} id="javascript">
+              <p onClick={selectTech} id="javascript" className="level__select-card">
                 JavaScript
               </p>
             ) : (
@@ -108,7 +108,7 @@ function SelectLevelPage() {
             }
           >
             {!showAmmount.react ? (
-              <p onClick={selectTech} id="react">
+              <p onClick={selectTech} id="react" className="level__select-card">
                 React
               </p>
             ) : (

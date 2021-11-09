@@ -94,9 +94,11 @@
   height: 30px;
   margin-top: 10px;
   p {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1rem;
     margin: 0;
     padding: 0 15px;
-    width: 75px;
+    width: 100px;
     text-align: center;
     color: $unselected-color;
   }
@@ -138,16 +140,7 @@
   transform: scale(0.9);
   transition: transform 300ms;
   min-width: 290px;
-  opacity: 0.8;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.score-slide-active-slide {
-  transform: scale(0.9);
   opacity: 1;
-  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -223,14 +216,11 @@
     justify-content: space-evenly;
   }
 
-  .score-slide-active-slide {
-    transform: scale(1.1);
+  .score-slide {
+    transform: scale(1);
     opacity: 1;
-    height: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
+
   .score__page {
     box-sizing: border-box;
     width: 100%;

@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import history from '../utils/history';
 import logo from '../assets/images/logo techprep grueso.svg';
 import '../assets/styles/pages/Register.scss';
+import { register as registerAction } from '../actions/register';
+import { useDispatch, useSelector } from 'react-redux';
+import { AUTHORIZED } from '../actions/constants';
 // import { FcGoogle } from 'react-icons/fc';
 // import { FaGithub } from 'react-icons/fa';
 
 function RegisterPage() {
+  const auth_status = useSelector((state) => state.auth_status);
+  const dispatch = useDispatch();
   const {
     register,
     formState: { errors },
@@ -15,8 +20,21 @@ function RegisterPage() {
   } = useForm({
     mode: 'onTouched',
   });
-  const onSubmit = () => history.push('/home');
-  // const onSubmit = (data) => console.log(data);
+
+  const onSubmit = (data, e) => {
+    e.preventDefault();
+    const registerData = {
+      ...data,
+      profile_photo: 'https://therminic2018.eu/wp-content/uploads/2018/07/dummy-avatar-300x300.jpg',
+    };
+    dispatch(registerAction(registerData));
+  };
+
+  useEffect(() => {
+    if (auth_status === AUTHORIZED) {
+      history.push('/home');
+    }
+  }, [auth_status]);
 
   return (
     <main className="register-page__body">
@@ -83,7 +101,7 @@ function RegisterPage() {
         <p className="link-text">
           Already have an account ?
           <Link to="/login">
-            <p className="link"> Login </p>
+            <span className="link"> Login </span>
           </Link>
         </p>
       </form>
