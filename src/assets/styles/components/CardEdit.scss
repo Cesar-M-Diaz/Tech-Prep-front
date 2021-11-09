@@ -2,6 +2,7 @@
 
 .card-edit__base {
   margin-top: 60px;
+  margin-bottom: 30px;
   background-color: $background-figures-color;
   display: flex;
   flex-direction: column;
@@ -9,7 +10,7 @@
   justify-content: center;
   box-sizing: border-box;
   width: 100%;
-  height: 500px;
+  min-height: 500px;
   transition: 200ms;
   border-radius: 20px;
   box-shadow: 15px -20px 0px 0px $background-figures-color;
@@ -88,7 +89,7 @@
   }
   .card-edit__option-text-container {
     width: 100%;
-    height: 60%;
+    height: 65%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -127,7 +128,7 @@
 @media (min-width: 768px) {
   .card-edit__base {
     width: 70%;
-    height: 500px;
+    min-height: 500px;
     box-shadow: 50px -30px 0px 0px $background-figures-color;
   }
 
@@ -138,8 +139,10 @@
 }
 @media (min-width: 992px) {
   .card-edit__base {
+    margin-top: 65px;
+    margin-bottom: 10px;
     width: 300px;
-    height: 400px;
+    min-height: 500px;
     box-shadow: 50px -30px 0px 0px $background-figures-color;
     &:hover {
       box-shadow: 100px -40px 0px 0px $background-figures-color;
@@ -148,13 +151,12 @@
 
   .card-edit__flip-card {
     // width: 100%;
-    height: 400px;
+    min-height: 500px;
   }
 }
 @media (min-width: 1200px) {
   .card-edit__base {
     width: 300px;
-    height: 400px;
     box-shadow: 50px -30px 0px 0px $background-figures-color;
     &:hover {
       box-shadow: 100px -40px 0px 0px $background-figures-color;
@@ -163,6 +165,6 @@
 
   .card-edit__flip-card {
     // width: 100%;
-    height: 400px;
+    min-height: 500px;
   }
 }

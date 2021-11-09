@@ -1,15 +1,21 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import CardEdit from '../components/CardEdit';
+import axios from '../utils/axios';
+import { swalStyled } from '../components/SwalCongfig';
 import '../assets/styles/pages/CardCreatePage.scss';
 
 function CreateCardPage() {
+  const user_id = useSelector((state) => state.currentUser._id);
   const [count, setCount] = useState(1);
   const [isAnswer, setIsAnswer] = useState({
     option_1: false,
     option_2: false,
     option_3: false,
   });
-  const [inputValue, setInputValue] = useState({
+  const [questionData, setQuestionData] = useState({
+    category: '',
+    difficulty: '',
     question: '',
     option_1: '',
     option_2: '',
@@ -29,7 +35,7 @@ function CreateCardPage() {
   });
 
   const handleChange = (e) => {
-    setInputValue((prevState) => ({
+    setQuestionData((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
     }));
@@ -43,9 +49,9 @@ function CreateCardPage() {
         option_2: false,
         option_3: false,
       });
-      setInputValue((prevState) => ({
+      setQuestionData((prevState) => ({
         ...prevState,
-        answer: inputValue.option_1,
+        answer: questionData.option_1,
       }));
     } else if (e.target.id === 'option_2') {
       setIsAnswer({
@@ -53,9 +59,9 @@ function CreateCardPage() {
         option_2: !isAnswer.option_2,
         option_3: false,
       });
-      setInputValue((prevState) => ({
+      setQuestionData((prevState) => ({
         ...prevState,
-        answer: inputValue.option_2,
+        answer: questionData.option_2,
       }));
     } else if (e.target.id === 'option_3') {
       setIsAnswer({
@@ -63,9 +69,9 @@ function CreateCardPage() {
         option_2: false,
         option_3: !isAnswer.option_3,
       });
-      setInputValue((prevState) => ({
+      setQuestionData((prevState) => ({
         ...prevState,
-        answer: inputValue.option_3,
+        answer: questionData.option_3,
       }));
     }
   }
@@ -84,9 +90,11 @@ function CreateCardPage() {
     }
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     if (
+      errors.category === false &&
+      errors.difficulty === false &&
       errors.question === false &&
       errors.option_1 === false &&
       errors.option_2 === false &&
@@ -95,11 +103,46 @@ function CreateCardPage() {
       errors.explanation === false &&
       (isAnswer.option_1 || isAnswer.option_2 || isAnswer.option_3)
     ) {
-      console.log(inputValue);
+      setErrors((prevState) => ({
+        ...prevState,
+        submit: false,
+      }));
+      const data = { ...questionData, user_id };
+      try {
+        const response = await axios.post('/create-question', data);
+        swalStyled.fire({
+          icon: 'success',
+          title: `Card ${response.statusText}`,
+        });
+        setQuestionData({
+          category: false,
+          difficulty: false,
+          question: '',
+          option_1: '',
+          option_2: '',
+          option_3: '',
+          title: '',
+          explanation: '',
+          answer: '',
+        });
+        setIsAnswer({
+          option_1: false,
+          option_2: false,
+          option_3: false,
+        });
+      } catch (error) {
+        swalStyled.fire({
+          icon: 'error',
+          title: 'Oops... Please try again',
+          text: error.message,
+        });
+      }
     } else {
       setErrors((prevState) => ({
         ...prevState,
         submit: 'Please fill the form correctly and select an answer',
+        category: 'Please select the category and level',
+        difficulty: 'Please select the category and level',
       }));
     }
   }
@@ -108,18 +151,24 @@ function CreateCardPage() {
     e.preventDefault();
     const value = e.target.value;
     const name = e.target.name;
-    if (value === '') {
+
+    if ((name === 'category' || name === 'difficulty') && value === '') {
+      setErrors((prevState) => ({
+        ...prevState,
+        [name]: 'Please select the category and level',
+      }));
+    } else if (value === '') {
       setErrors((prevState) => ({
         ...prevState,
         [name]: 'Field is required',
       }));
     } else if (
       (name === 'option_1' || name === 'option_2' || name === 'option_3') &&
-      value.length > 65
+      value.length > 100
     ) {
       setErrors((prevState) => ({
         ...prevState,
-        [name]: 'Option must me less than 65 characters',
+        [name]: 'Option must me less than 100 characters',
       }));
     } else if (name === 'question' && value.length > 165) {
       setErrors((prevState) => ({
@@ -155,6 +204,44 @@ function CreateCardPage() {
         <h3>Create new question</h3>
         {count === 1 && (
           <>
+            <div className="create-card__select-container">
+              <div className="create-card__select-element">
+                <label htmlFor="category" className="input__label">
+                  Category
+                </label>
+                <select
+                  name="category"
+                  id="category_selector"
+                  onChange={handleChange}
+                  onBlur={validateInputs}
+                >
+                  <option value="" hidden>
+                    Select category
+                  </option>
+                  <option value="javascript">JavaScript</option>
+                  <option value="react">React</option>
+                </select>
+              </div>
+              <div className="create-card__select-element">
+                <label htmlFor="difficulty" className="input__label">
+                  Level
+                </label>
+                <select
+                  name="difficulty"
+                  id="difficulty_selector"
+                  onChange={handleChange}
+                  onBlur={validateInputs}
+                >
+                  <option value="" hidden>
+                    Select Level
+                  </option>
+                  <option value="junior">Junior</option>
+                </select>
+              </div>
+            </div>
+            {(errors.category || errors.difficulty) && (
+              <p>{errors.category || errors.difficulty}</p>
+            )}
             <label className="input__label">Question</label>
             <textarea
               className="create-card__question"
@@ -162,7 +249,7 @@ function CreateCardPage() {
               name="question"
               onBlur={validateInputs}
               onChange={handleChange}
-              value={inputValue.question}
+              value={questionData.question}
               placeholder="Question"
             ></textarea>
             {errors.question && <p>{errors.question}</p>}
@@ -172,7 +259,7 @@ function CreateCardPage() {
               <button
                 onClick={selAnswer}
                 id="option_1"
-                disabled={!inputValue.option_1}
+                disabled={!questionData.option_1}
                 className={!isAnswer.option_1 && 'unselected'}
               >
                 {isAnswer.option_1 ? 'unset as answer' : 'set as answer'}
@@ -185,7 +272,7 @@ function CreateCardPage() {
               placeholder="Option 1"
               onChange={handleChange}
               onBlur={validateInputs}
-              value={inputValue.option_1}
+              value={questionData.option_1}
             ></textarea>
             {errors.option_1 && <p>{errors.option_1}</p>}
 
@@ -194,7 +281,7 @@ function CreateCardPage() {
               <button
                 onClick={selAnswer}
                 id="option_2"
-                disabled={!inputValue.option_2}
+                disabled={!questionData.option_2}
                 className={!isAnswer.option_2 && 'unselected'}
               >
                 {isAnswer.option_2 ? 'unset as answer' : 'set as answer'}
@@ -207,7 +294,7 @@ function CreateCardPage() {
               placeholder="Option 2"
               onChange={handleChange}
               onBlur={validateInputs}
-              value={inputValue.option_2}
+              value={questionData.option_2}
             ></textarea>
             {errors.option_2 && <p>{errors.option_2}</p>}
 
@@ -216,7 +303,7 @@ function CreateCardPage() {
               <button
                 onClick={selAnswer}
                 id="option_3"
-                disabled={!inputValue.option_3}
+                disabled={!questionData.option_3}
                 className={!isAnswer.option_3 && 'unselected'}
               >
                 {isAnswer.option_3 ? 'unset as answer' : 'set as answer'}
@@ -229,7 +316,7 @@ function CreateCardPage() {
               placeholder="Option 3"
               onChange={handleChange}
               onBlur={validateInputs}
-              value={inputValue.option_3}
+              value={questionData.option_3}
             ></textarea>
             {errors.option_3 && <p>{errors.option_3}</p>}
           </>
@@ -244,7 +331,7 @@ function CreateCardPage() {
               placeholder="Title"
               onChange={handleChange}
               onBlur={validateInputs}
-              value={inputValue.title}
+              value={questionData.title}
             />
             {errors.title && <p>{errors.title}</p>}
             <label className="input__label">Explanation</label>
@@ -255,7 +342,7 @@ function CreateCardPage() {
               placeholder="Explanation"
               onChange={handleChange}
               onBlur={validateInputs}
-              value={inputValue.explanation}
+              value={questionData.explanation}
             ></textarea>
             {errors.explanation && <p>{errors.explanation}</p>}
           </>
@@ -290,7 +377,7 @@ function CreateCardPage() {
       </form>
       <div className="create-card__preview-container">
         <h3>Preview</h3>
-        <CardEdit data={inputValue} count={count} />
+        <CardEdit data={questionData} count={count} />
       </div>
     </div>
   );
