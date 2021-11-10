@@ -36,9 +36,9 @@ function GameCard({ data, flip, assignAnswers }) {
     }
 
     if (answer !== data.answer) {
-      assignAnswers(data.id, 'wrong');
+      assignAnswers(data._id, 'wrong');
     } else {
-      assignAnswers(data.id, 'correct');
+      assignAnswers(data._id, 'correct');
     }
   }
 

@@ -4,15 +4,16 @@ import CountDown from '../components/CountDown';
 import Slider from 'react-slick';
 import history from '../utils/history';
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
+import axios from '../utils/axios';
 import '../assets/styles/pages/GamePage.scss';
 // import soundtrack from '../assets/audio/soundtrack.mp3';
 
-function ResultPage() {
-  const [questionsNumber] = useState(15);
+function ResultPage(props) {
+  const questionsData = props?.location?.state?.state?.questions;
+  const _id = props?.location?.state?.state?.session_id;
   const [imageIndex, setImageIndex] = useState(0);
   const [isAnswered, setIsAnswered] = useState([]);
   const [answers, setAnswers] = useState({});
-  const [wrongAnswers, setWrongAnswers] = useState([]);
 
   const NextArrow = ({ onClick }) => {
     return (
@@ -54,124 +55,52 @@ function ResultPage() {
     ],
   };
 
-  const mockQuestions = [
-    {
-      id: 1,
-      answer: 'answer Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      option_1: 'answer Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      option_2: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      option_3: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      question:
-        '1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure mollitia doloremque inventore accusamus quae quod cumque voluptate dolorem labore ea.',
-    },
-    {
-      id: 2,
-      answer: 'answer Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      option_1: 'answer Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      option_2: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      option_3: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      question:
-        '2 Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure mollitia doloremque inventore accusamus quae quod cumque voluptate dolorem labore ea.',
-    },
-    {
-      id: 3,
-      answer: 'answer Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      option_1: 'answer Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      option_2: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      option_3: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      question:
-        '3 Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure mollitia doloremque inventore accusamus quae quod cumque voluptate dolorem labore ea.',
-    },
-    {
-      id: 4,
-      answer: 'answer Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      option_1: 'answer Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      option_2: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      option_3: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      question:
-        '4 Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure mollitia doloremque inventore accusamus quae quod cumque voluptate dolorem labore ea.',
-    },
-  ];
-
   useEffect(() => {
-    const mockQuestions = [
-      {
-        id: 1,
-        answer: 'answer Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        option_1: 'answer Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        option_2: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        option_3: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        question:
-          '1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure mollitia doloremque inventore accusamus quae quod cumque voluptate dolorem labore ea.',
-      },
-      {
-        id: 2,
-        answer: 'answer Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        option_1: 'answer Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        option_2: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        option_3: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        question:
-          '2 Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure mollitia doloremque inventore accusamus quae quod cumque voluptate dolorem labore ea.',
-      },
-      {
-        id: 3,
-        answer: 'answer Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        option_1: 'answer Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        option_2: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        option_3: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        question:
-          '3 Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure mollitia doloremque inventore accusamus quae quod cumque voluptate dolorem labore ea.',
-      },
-      {
-        id: 4,
-        answer: 'answer Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        option_1: 'answer Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        option_2: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        option_3: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        question:
-          '4 Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure mollitia doloremque inventore accusamus quae quod cumque voluptate dolorem labore ea.',
-      },
-    ];
-    mockQuestions.map((question) => setAnswers((prev) => ({ ...prev, [question.id]: 'wrong' })));
-  }, []);
+    questionsData?.map((question) => setAnswers((prev) => ({ ...prev, [question._id]: 'wrong' })));
+  }, [questionsData]);
 
   function assignAnswers(answer, status) {
     setAnswers((prev) => ({ ...prev, [answer]: status }));
     setIsAnswered((prev) => ({ ...prev, [answer]: true }));
-    console.log(answers);
   }
 
-  function submitAnswers() {
-    Object.keys(answers).forEach((answer) => {
-      if (answers[answer] === 'wrong') {
-        setWrongAnswers((prev) => [...prev, answer]);
-      }
-    });
-    history.push('/train/score');
+  async function submitAnswers() {
+    try {
+      const data = { _id, answers };
+      await axios.put('/session', data);
+      history.push(`/train/score/${_id}`);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  let onTimesup = () => {
-    Object.keys(answers).forEach((answer) => {
-      if (answers[answer] === 'wrong') {
-        setWrongAnswers((prev) => [...prev, answer]);
-      }
-    });
-    console.log(wrongAnswers);
-    history.push('/train/score');
+  const onTimesup = async () => {
+    try {
+      const data = { _id, answers };
+      await axios.put('/session', data);
+      history.push(`/train/score/${_id}`);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <div className="game-page">
       <div className="game-top">
         <h1>
-          time left <CountDown onTimesup={onTimesup} duration={questionsNumber * 60} /> min
+          time left <CountDown onTimesup={onTimesup} duration={questionsData?.length * 60} /> min
         </h1>
       </div>
       <div className="game-questions-container">
         <Slider {...settings}>
-          {mockQuestions?.map((answer, idx) => (
+          {questionsData?.map((answer, idx) => (
             <div className={idx === imageIndex ? 'game-slide-active-slide' : 'game-slide'}>
-              <GameCard data={answer} flip={idx === imageIndex} assignAnswers={assignAnswers} />
+              <GameCard
+                ket={answer._id}
+                data={answer}
+                flip={idx === imageIndex}
+                assignAnswers={assignAnswers}
+              />
             </div>
           ))}
         </Slider>
@@ -179,7 +108,7 @@ function ResultPage() {
       <div className="game-controls">
         <div
           className={
-            Object.keys(isAnswered).length === mockQuestions.length
+            Object.keys(isAnswered).length === questionsData?.length
               ? 'game__button-container'
               : 'game__button-container-hidden'
           }

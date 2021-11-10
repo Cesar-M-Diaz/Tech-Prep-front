@@ -41,7 +41,7 @@ function App() {
           <PrivateRoute exact path="/profile" component={Profile} />
           <PrivateRoute exact path="/add_questions" component={CreateCard} />
           <PrivateRoute exact path="/train" component={SelectLevelPage} />
-          <PrivateRoute exact path="/train/score" component={ScorePage} />
+          <PrivateRoute exact path="/train/score/:id" component={ScorePage} />
           <PrivateRoute exact path="/train/game" component={GamePage} />
         </Layout>
       </Switch>
