@@ -137,10 +137,14 @@ function CreateCardPage() {
           text: error.message,
         });
       }
-    } else {
+    } else if (questionData.answer === '') {
       setErrors((prevState) => ({
         ...prevState,
         submit: 'Please fill the form correctly and select an answer',
+      }));
+    } else {
+      setErrors((prevState) => ({
+        ...prevState,
         technology: 'Please select the technology and level',
         level: 'Please select the technology and level',
       }));

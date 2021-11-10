@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Questions from '../components/Questions';
 import Slider from 'react-slick';
+import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 import history from '../utils/history';
 import axios from '../utils/axios';
-import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 import { swalStyled } from '../components/SwalCongfig';
 import '../assets/styles/pages/ResultPage.scss';
 

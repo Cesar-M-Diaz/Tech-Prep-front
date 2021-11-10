@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import history from '../utils/history';
@@ -6,10 +6,12 @@ import logo from '../assets/images/logo techprep grueso.svg';
 import '../assets/styles/pages/Login.scss';
 import login from '../actions/login';
 import { useDispatch, useSelector } from 'react-redux';
+import { AUTHORIZED } from '../actions/constants';
 // import { FcGoogle } from 'react-icons/fc';
 // import { FaGithub } from 'react-icons/fa';
 
 function LoginPage() {
+  const auth_status = useSelector((state) => state.auth_status);
   const globalState = useSelector((state) => state);
   const dispatch = useDispatch();
   const {
@@ -20,6 +22,12 @@ function LoginPage() {
     mode: 'onTouched',
   });
   // const onSubmit = () => history.push('/home');
+
+  useEffect(() => {
+    if (auth_status === AUTHORIZED) {
+      history.push('/home');
+    }
+  }, [auth_status]);
 
   const onSubmit = async (data, e) => {
     e.preventDefault();

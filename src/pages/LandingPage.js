@@ -1,15 +1,25 @@
 import React from 'react';
 import { Suspense } from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import Geometry from '../components/Geometry';
 import history from '../utils/history';
 import logo from '../assets/images/logo techprep grueso.svg';
+import { AUTHORIZED } from '../actions/constants';
 import '../assets/styles/pages/Langing.scss';
 
 function LandingPage() {
+  const auth_status = useSelector((state) => state.auth_status);
   const [speed] = useState(0.4);
   const [target] = useState(5);
   const [count] = useState(40);
+
+  useEffect(() => {
+    if (auth_status === AUTHORIZED) {
+      history.push('/home');
+    }
+  }, [auth_status]);
+
   return (
     <main className="landing__body">
       <Suspense fallback={null}>
