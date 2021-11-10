@@ -20,7 +20,9 @@
   // height: 100%;
   width: 100%;
   h2 {
+    font-size: $title-font-size;
     color: $text-color;
+    margin-bottom: 30px;
   }
 }
 
@@ -111,7 +113,8 @@
   width: 100%;
   h2 {
     color: $text-color;
-    margin: 30px 0;
+    margin: 50px 0 20px 0;
+    font-size: $title-font-size;
   }
 }
 
@@ -287,15 +290,16 @@
 @media (min-width: 992px) {
   .level__page-body {
     flex-direction: row;
-    align-items: flex-start;
+    align-items: flex-center;
     width: 992px;
   }
   .level__container {
     width: 40%;
     h2 {
       margin-top: 50px;
-      margin-bottom: 200px;
+      margin-bottom: 20vh;
     }
+    margin-bottom: calc(628.95px - 351.39px);
   }
   .level__button-container {
     width: 80%;
@@ -310,10 +314,11 @@
     height: auto;
     h2 {
       margin-top: 50px;
-      margin-bottom: 50px;
+      margin-bottom: 8vh;
     }
     .level__technologies-cards-container {
-      height: 500px;
+      justify-content: space-around;
+      height: 470px;
     }
   }
   .level__technology-card {
@@ -327,44 +332,15 @@
 
 @media (min-width: 1200px) {
   .level__page-body {
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
     width: 1200px;
+    justify-content: space-between;
   }
   .level__container {
-    width: 25%;
-    h2 {
-      margin-top: 50px;
-      margin-bottom: 200px;
-    }
-  }
-  .level__button-container {
-    width: 80%;
+    width: 30%;
   }
 
-  .level__button-container-selected {
-    width: 80%;
-  }
-
-  .level__technologies-container {
-    width: 70%;
-    h2 {
-      margin-top: 50px;
-      margin-bottom: 100px;
-    }
-    .level__technologies-cards-container {
-      height: 300px;
-    }
-  }
-  .level__technologies-cards-container {
-    flex-direction: row;
-    height: 300px;
-    width: 100%;
-    margin: auto 0;
-  }
   .level__technology-card {
-    width: 70%;
+    width: 80%;
     margin: 0 20px;
   }
 
