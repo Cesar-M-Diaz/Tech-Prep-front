@@ -56,7 +56,13 @@ function ResultPage(props) {
   };
 
   useEffect(() => {
-    questionsData?.map((question) => setAnswers((prev) => ({ ...prev, [question._id]: 'wrong' })));
+    if (questionsData) {
+      questionsData?.map((question) =>
+        setAnswers((prev) => ({ ...prev, [question._id]: 'wrong' })),
+      );
+    } else {
+      history.push('/train');
+    }
   }, [questionsData]);
 
   function assignAnswers(answer, status) {
