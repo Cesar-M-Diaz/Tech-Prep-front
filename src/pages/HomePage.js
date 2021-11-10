@@ -5,11 +5,13 @@ import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 import jsLogo from '../assets/images/jsLogo.png';
 import reactLogo from '../assets/images/reactLogo.png';
 import axios from '../utils/axios';
+import Loader2 from '../components/Loader2';
 import 'normalize.css';
 import '../assets/styles/pages/HomePage.scss';
 
 function HomePage() {
   const [questions, setQuestions] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const NextArrow = ({ onClick }) => {
     return (
@@ -53,6 +55,7 @@ function HomePage() {
       try {
         const { data } = await axios.get('/question');
         setQuestions(data);
+        setIsLoading(false);
       } catch (e) {
         console.log(e);
       }
@@ -73,22 +76,26 @@ function HomePage() {
         <h1>last questions added by the community</h1>
         <div className="home__questions">
           <div className="home-answers-container">
-            <Slider {...settings}>
-              {questions?.map((question, idx) => (
-                <div className="home-slide">
-                  <p className="home-slide__text">
-                    Added by: <span>{question.user_id.name}</span>{' '}
-                  </p>
-                  <p className="home-slide__text">
-                    Technology: <span>{question.technology}</span>{' '}
-                  </p>
-                  <p className="home-slide__text">
-                    Question level: <span>{question.level}</span>{' '}
-                  </p>
-                  <Questions key={question.user_id._id} data={question} />
-                </div>
-              ))}
-            </Slider>
+            {isLoading ? (
+              <Loader2 />
+            ) : (
+              <Slider {...settings}>
+                {questions?.map((question, idx) => (
+                  <div className="home-slide">
+                    <p className="home-slide__text">
+                      Added by: <span>{question.user_id.name}</span>{' '}
+                    </p>
+                    <p className="home-slide__text">
+                      Technology: <span>{question.technology}</span>{' '}
+                    </p>
+                    <p className="home-slide__text">
+                      Question level: <span>{question.level}</span>{' '}
+                    </p>
+                    <Questions key={question.user_id._id} data={question} />
+                  </div>
+                ))}
+              </Slider>
+            )}
           </div>
         </div>
       </div>
