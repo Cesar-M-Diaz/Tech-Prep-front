@@ -14,8 +14,8 @@ function CreateCardPage() {
     option_3: false,
   });
   const [questionData, setQuestionData] = useState({
-    category: '',
-    difficulty: '',
+    technology: '',
+    level: '',
     question: '',
     option_1: '',
     option_2: '',
@@ -93,8 +93,8 @@ function CreateCardPage() {
   async function handleSubmit(e) {
     e.preventDefault();
     if (
-      errors.category === false &&
-      errors.difficulty === false &&
+      errors.technology === false &&
+      errors.level === false &&
       errors.question === false &&
       errors.option_1 === false &&
       errors.option_2 === false &&
@@ -109,14 +109,14 @@ function CreateCardPage() {
       }));
       const data = { ...questionData, user_id };
       try {
-        const response = await axios.post('/create-question', data);
+        const response = await axios.post('/question', data);
         swalStyled.fire({
           icon: 'success',
           title: `Card ${response.statusText}`,
         });
         setQuestionData({
-          category: false,
-          difficulty: false,
+          technology: false,
+          level: false,
           question: '',
           option_1: '',
           option_2: '',
@@ -141,8 +141,8 @@ function CreateCardPage() {
       setErrors((prevState) => ({
         ...prevState,
         submit: 'Please fill the form correctly and select an answer',
-        category: 'Please select the category and level',
-        difficulty: 'Please select the category and level',
+        technology: 'Please select the technology and level',
+        level: 'Please select the technology and level',
       }));
     }
   }
@@ -152,10 +152,10 @@ function CreateCardPage() {
     const value = e.target.value;
     const name = e.target.name;
 
-    if ((name === 'category' || name === 'difficulty') && value === '') {
+    if ((name === 'technology' || name === 'level') && value === '') {
       setErrors((prevState) => ({
         ...prevState,
-        [name]: 'Please select the category and level',
+        [name]: 'Please select the technology and level',
       }));
     } else if (value === '') {
       setErrors((prevState) => ({
@@ -206,31 +206,33 @@ function CreateCardPage() {
           <>
             <div className="create-card__select-container">
               <div className="create-card__select-element">
-                <label htmlFor="category" className="input__label">
-                  Category
+                <label htmlFor="technology" className="input__label">
+                  technology
                 </label>
                 <select
-                  name="category"
-                  id="category_selector"
+                  name="technology"
+                  id="technology_selector"
                   onChange={handleChange}
                   onBlur={validateInputs}
+                  value={questionData.technology}
                 >
                   <option value="" hidden>
-                    Select category
+                    Select technology
                   </option>
                   <option value="javascript">JavaScript</option>
                   <option value="react">React</option>
                 </select>
               </div>
               <div className="create-card__select-element">
-                <label htmlFor="difficulty" className="input__label">
+                <label htmlFor="level" className="input__label">
                   Level
                 </label>
                 <select
-                  name="difficulty"
-                  id="difficulty_selector"
+                  name="level"
+                  id="level_selector"
                   onChange={handleChange}
                   onBlur={validateInputs}
+                  value={questionData.level}
                 >
                   <option value="" hidden>
                     Select Level
@@ -239,9 +241,7 @@ function CreateCardPage() {
                 </select>
               </div>
             </div>
-            {(errors.category || errors.difficulty) && (
-              <p>{errors.category || errors.difficulty}</p>
-            )}
+            {(errors.technology || errors.level) && <p>{errors.technology || errors.level}</p>}
             <label className="input__label">Question</label>
             <textarea
               className="create-card__question"

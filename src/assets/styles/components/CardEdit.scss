@@ -59,7 +59,7 @@
     padding: 0;
     text-align: center;
     width: 100%;
-    font-size: 1.1rem;
+    font-size: $input-font-size;
     font-weight: 600;
     margin-top: 0;
     margin-bottom: 40px;
@@ -73,7 +73,7 @@
       text-align: justify;
       text-justify: distribute;
       width: 100%;
-      font-size: 1rem;
+      font-size: $input-font-size;
       font-weight: 300;
       margin-bottom: 1rem;
       margin: 10px 0;
@@ -103,7 +103,7 @@
       text-align: justify;
       text-justify: distribute;
       width: 100%;
-      font-size: 1rem;
+      font-size: $input-font-size;
       font-weight: 300;
       margin-bottom: 1rem;
       margin: 10px 0;
@@ -139,9 +139,9 @@
 }
 @media (min-width: 992px) {
   .card-edit__base {
-    margin-top: 65px;
-    margin-bottom: 10px;
-    width: 300px;
+    margin-top: 85px;
+    margin-bottom: 40px;
+    width: 350px;
     min-height: 500px;
     box-shadow: 50px -30px 0px 0px $background-figures-color;
     &:hover {
@@ -156,7 +156,7 @@
 }
 @media (min-width: 1200px) {
   .card-edit__base {
-    width: 300px;
+    width: 350px;
     box-shadow: 50px -30px 0px 0px $background-figures-color;
     &:hover {
       box-shadow: 100px -40px 0px 0px $background-figures-color;
