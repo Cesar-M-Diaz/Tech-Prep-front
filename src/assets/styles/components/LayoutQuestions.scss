@@ -65,7 +65,7 @@
 
 @media screen and (min-width: 992px) {
   .layout-select-container {
-    width: 992px;
+    width: 80%;
     margin: 130px auto 0 auto;
   }
 }
@@ -92,7 +92,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-end;
-    width: 20%;
+    width: 250px;
     height: 130px;
     margin-top: 50px;
     .questions-layout {

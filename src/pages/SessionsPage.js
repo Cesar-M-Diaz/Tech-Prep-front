@@ -4,6 +4,7 @@ import axios from '../utils/axios';
 import { swalStyled } from '../components/SwalCongfig';
 import Session from '../components/Session';
 import Loader2 from '../components/Loader2';
+import '../assets/styles/pages/Sessions.scss';
 
 function SessionsPage() {
   const user_id = useSelector((state) => state.currentUser._id);
@@ -28,19 +29,15 @@ function SessionsPage() {
   }, [user_id]);
 
   return (
-    <div>
-      <div>
+    <div className="sessions__page-container">
+      <div className="sessions__title-container">
         <h1>My training sessions</h1>
       </div>
-      <div>
+      <div className="sessions__sessions-container">
         {isloading ? (
           <Loader2 />
         ) : (
-          sessions?.map((session) => (
-            <div key={session._id} className="session-page__list-container">
-              <Session data={session} />
-            </div>
-          ))
+          sessions?.map((session) => <Session data={session} key={session._id} />)
         )}
       </div>
     </div>

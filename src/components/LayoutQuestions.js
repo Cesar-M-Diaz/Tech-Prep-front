@@ -6,19 +6,15 @@ import '../assets/styles/components/LayoutQuestions.scss';
 
 function LayoutQuestions(props) {
   const [active, setActive] = useState(false);
-  const [selected, setSelected] = useState(window.location.pathname);
-  const [selectSelected, setSelectSelected] = useState(window.location.pathname);
   const toggleMenu = () => {
     setActive(!active);
   };
+
   const handleClick = (e) => {
-    setSelected(e.target.id);
-    history.push(`/questions/${e.target.id}`);
-    setSelected(`/questions/${e.target.id}`);
+    history.push(e.target.id);
   };
   const handleChange = (e) => {
     history.push(e.target.value);
-    setSelectSelected(e.target.value);
   };
 
   return (
@@ -27,22 +23,26 @@ function LayoutQuestions(props) {
       <div className={`layout-divission${active ? '-active' : '-hidden'}`}>
         <div className="layout-button-container">
           <button
-            id="my_questions"
-            className={`questions-layout ${selected === '/questions/my_questions' && `selected`}`}
+            id="/questions/my_questions"
+            className={`questions-layout ${
+              window.location.pathname === '/questions/my_questions' && `selected`
+            }`}
             onClick={handleClick}
           >
             My Questions
           </button>
           <button
-            id="add_questions"
-            className={`questions-layout ${selected === '/questions/add_questions' && `selected`}`}
+            id="/questions/add_questions"
+            className={`questions-layout ${
+              window.location.pathname === '/questions/add_questions' && `selected`
+            }`}
             onClick={handleClick}
           >
             Add Question
           </button>
         </div>
         <div className="layout-select-container">
-          <select value={selectSelected} onChange={handleChange}>
+          <select value={window.location.pathname} onChange={handleChange}>
             <option value="/questions/my_questions">my questions</option>
             <option value="/questions/add_questions">add questions</option>
           </select>

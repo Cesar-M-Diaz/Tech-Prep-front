@@ -51,8 +51,7 @@ function MyQuestionsPage() {
 
   async function deleteQuestion(id) {
     try {
-      const response = await axios.delete(`/question/${id}`);
-      console.log(response.data);
+      await axios.delete(`/question/${id}`);
       setQuestions((prevState) => prevState.filter((question) => question._id !== id));
       swalStyled.fire({
         icon: 'success',
@@ -76,10 +75,10 @@ function MyQuestionsPage() {
           <div id={question._id} key={question._id} className="my-question__question">
             <Questions data={question} />
             <div className="my-question__container-buttons">
-              <button name="edit" onClick={handleClick}>
+              <button className="my-question__edit-button" name="edit" onClick={handleClick}>
                 edit
               </button>
-              <button name="delete" onClick={handleClick}>
+              <button className="my-question__delete-button" name="delete" onClick={handleClick}>
                 delete
               </button>
             </div>

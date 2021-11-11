@@ -35,22 +35,22 @@
   margin-top: 10px;
   p {
     font-family: 'Bebas Neue', cursive;
-    font-size: 1rem;
+    font-size: 1.2rem;
+    padding: 0 30px;
     margin: 0;
-    padding: 0 15px;
-    width: 100px;
+    width: 130px;
     text-align: center;
     color: $unselected-color;
   }
   .level__collapsible-a {
     transition: 0.5s;
-    width: 10%;
+    width: 37%;
     height: 30px;
     background-color: $unselected-color;
   }
   .level__collapsible-b {
     transition: 0.5s;
-    width: 70%;
+    width: 37%;
     height: 30px;
     background-color: $unselected-color;
   }
@@ -64,7 +64,7 @@
     }
     .level__collapsible-b {
       transition: 0.5s;
-      width: 40%;
+      width: 37%;
       background-color: $button-color-hover;
     }
     p {
@@ -81,9 +81,11 @@
   height: 30px;
   margin-top: 10px;
   p {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.2rem;
+    padding: 0 30px;
     margin: 0;
-    padding: 0 20px;
-    width: 70px;
+    width: 130px;
     text-align: center;
     color: $button-color-hover;
   }
@@ -95,7 +97,7 @@
   }
   .level__collapsible-b {
     transition: 0.5s;
-    width: 40%;
+    width: 37%;
     height: 30px;
     background-color: $button-color-hover;
   }
@@ -302,11 +304,38 @@
     margin-bottom: calc(628.95px - 351.39px);
   }
   .level__button-container {
-    width: 80%;
+    width: 90%;
+    p {
+      width: 100px;
+    }
+    .level__collapsible-a {
+      width: 10%;
+    }
+    .level__collapsible-b {
+      width: 50%;
+    }
+    &:hover {
+      cursor: pointer;
+      .level__collapsible-a {
+        width: 30%;
+      }
+      .level__collapsible-b {
+        width: 30%;
+      }
+    }
   }
 
   .level__button-container-selected {
-    width: 80%;
+    width: 90%;
+    p {
+      width: 100px;
+    }
+    .level__collapsible-a {
+      width: 37%;
+    }
+    .level__collapsible-b {
+      width: 40%;
+    }
   }
 
   .level__technologies-container {

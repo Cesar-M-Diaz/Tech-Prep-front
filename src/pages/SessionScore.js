@@ -6,7 +6,7 @@ import history from '../utils/history';
 import axios from '../utils/axios';
 import { swalStyled } from '../components/SwalCongfig';
 import Loader2 from '../components/Loader2';
-import '../assets/styles/pages/ResultPage.scss';
+import '../assets/styles/pages/SessionScore.scss';
 
 function SessionScorePage(props) {
   const id = props.match.params.id;
@@ -70,14 +70,9 @@ function SessionScorePage(props) {
   return (
     <div className="score__page">
       <div className="score__questions-page">
-        <div className="score__top-container">
-          <h1 className="score__title-container-mobile">Failed questions</h1>
-          <div className="score__button-container" onClick={() => history.push('/sessions')}>
-            <div className="score__collapsible-a"></div>
-            <p>Back</p>
-            <div className="score__collapsible-b"></div>
-          </div>
-          <h1 className="score__title-container-desktop">Wrong Answers</h1>
+        <div className="session-score__top-container">
+          <h1>Wrong Answers</h1>
+          <button onClick={() => history.push('/sessions')}>go back</button>
         </div>
         {isLoading ? (
           <div className="score-loader_container">
