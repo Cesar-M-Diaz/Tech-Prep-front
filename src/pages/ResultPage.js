@@ -5,10 +5,12 @@ import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 import history from '../utils/history';
 import axios from '../utils/axios';
 import { swalStyled } from '../components/SwalCongfig';
+import Loader2 from '../components/Loader2';
 import '../assets/styles/pages/ResultPage.scss';
 
 function ResultPage(props) {
   const id = props.match.params.id;
+  const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [wrongAnswers, setWrongAnswers] = useState([]);
   const [scoreData, setScoreData] = useState({
@@ -63,10 +65,11 @@ function ResultPage(props) {
           correct: sessionData.data.session.correct_answers.length,
           total: sessionData.data.session.question_number,
         });
+        setIsLoading(false);
       } catch (err) {
         swalStyled.fire({
           icon: 'error',
-          title: 'Oops... Please try again Score Page',
+          title: 'Oops... Please try again',
           text: err.message,
         });
       }
@@ -116,22 +119,32 @@ function ResultPage(props) {
               <p>Back</p>
               <div className="score__collapsible-b"></div>
             </div>
-            <h1 className="score__title-container-desktop">Failed questions</h1>
+            <h1 className="score__title-container-desktop">Wrong Answers</h1>
             <div className="score__button-container" onClick={() => history.push('/train')}>
               <div className="score__collapsible-a"></div>
               <p>Finish</p>
               <div className="score__collapsible-b"></div>
             </div>
           </div>
-          <div className="score-answers-container">
-            <Slider {...settings}>
-              {wrongAnswers?.map((answer) => (
-                <div className="score-slide">
-                  <Questions key={answer._id} data={answer} />
-                </div>
-              ))}
-            </Slider>
-          </div>
+          {isLoading ? (
+            <div className="score-loader_container">
+              <Loader2 />
+            </div>
+          ) : wrongAnswers.length === 0 ? (
+            <p className="result-page__success_message">
+              Nothing to see here!! you did great, keep the good work
+            </p>
+          ) : (
+            <div className="score-answers-container">
+              <Slider {...settings}>
+                {wrongAnswers?.map((answer) => (
+                  <div key={answer._id} className="score-slide">
+                    <Questions data={answer} />
+                  </div>
+                ))}
+              </Slider>
+            </div>
+          )}
         </div>
       )}
     </div>

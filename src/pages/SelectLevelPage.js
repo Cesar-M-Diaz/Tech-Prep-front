@@ -51,8 +51,9 @@ function SelectLevelPage() {
         const session = await axios.post('/session', data);
         const questions = session.data.questions;
         const session_id = session.data.session._id;
-        history.push(`train/game`, {
-          state: { questions, session_id },
+        console.log(session_id);
+        history.push(`/train/game/${session_id}`, {
+          state: { questions },
         });
       } catch (error) {
         swalStyled.fire({
