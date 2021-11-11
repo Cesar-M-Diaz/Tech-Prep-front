@@ -8,9 +8,9 @@ import axios from '../utils/axios';
 import '../assets/styles/pages/GamePage.scss';
 // import soundtrack from '../assets/audio/soundtrack.mp3';
 
-function ResultPage(props) {
+function GamePage(props) {
   const questionsData = props?.location?.state?.state?.questions;
-  const _id = props?.location?.state?.state?.session_id;
+  const id = props.match.params.id;
   const [imageIndex, setImageIndex] = useState(0);
   const [isAnswered, setIsAnswered] = useState([]);
   const [answers, setAnswers] = useState({});
@@ -72,9 +72,9 @@ function ResultPage(props) {
 
   async function submitAnswers() {
     try {
-      const data = { _id, answers };
+      const data = { id, answers };
       await axios.put('/session', data);
-      history.push(`/train/score/${_id}`);
+      history.push(`/train/score/${id}`);
     } catch (error) {
       console.log(error);
     }
@@ -82,9 +82,9 @@ function ResultPage(props) {
 
   const onTimesup = async () => {
     try {
-      const data = { _id, answers };
+      const data = { id, answers };
       await axios.put('/session', data);
-      history.push(`/train/score/${_id}`);
+      history.push(`/train/score/${id}`);
     } catch (error) {
       console.log(error);
     }
@@ -100,13 +100,11 @@ function ResultPage(props) {
       <div className="game-questions-container">
         <Slider {...settings}>
           {questionsData?.map((answer, idx) => (
-            <div className={idx === imageIndex ? 'game-slide-active-slide' : 'game-slide'}>
-              <GameCard
-                ket={answer._id}
-                data={answer}
-                flip={idx === imageIndex}
-                assignAnswers={assignAnswers}
-              />
+            <div
+              key={answer._id}
+              className={idx === imageIndex ? 'game-slide-active-slide' : 'game-slide'}
+            >
+              <GameCard data={answer} flip={idx === imageIndex} assignAnswers={assignAnswers} />
             </div>
           ))}
         </Slider>
@@ -134,4 +132,4 @@ function ResultPage(props) {
   );
 }
 
-export default ResultPage;
+export default GamePage;
