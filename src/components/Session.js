@@ -9,20 +9,22 @@ function Session({ data }) {
   }
 
   return (
-    <div>
-      <div>
+    <div className="session__container">
+      <div className="session__content">
         <h1>
-          <span>{data.technology}</span> <span>{data.level}</span> session{' '}
+          <span>{data.level}</span> <span>{data.technology}</span> session{' '}
           {/* <span>{format(new Date(data.createdAt), 'dd/MMMM/yyyy')}</span>{' '} */}
           <span>
             {formatDistance(new Date(data.createdAt), new Date(), { addSuffix: true })}
           </span>{' '}
         </h1>
         <p>
-          Score: <span>{data.correct_answers.length}</span>/{data.question_number}
+          <span>Score:</span> {data.correct_answers.length}/{data.question_number}
         </p>
       </div>
-      <button onClick={redirectPage}>view answers</button>
+      <button className="session__button" onClick={redirectPage}>
+        view wrong answers
+      </button>
     </div>
   );
 }

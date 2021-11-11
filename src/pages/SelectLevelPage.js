@@ -33,14 +33,13 @@ function SelectLevelPage() {
   }
 
   function selectlevel(e) {
-    const levelName = e.target.innerText.toLowerCase();
+    const levelName = e.nativeEvent.path[1].innerText.toLowerCase();
     setLevel(levelName);
   }
 
   async function startGame(e) {
     e.preventDefault();
     const data = { user_id, technology, level, question_number };
-    console.log(data);
     if (question_number === '' || level === '' || technology === '') {
       swalStyled.fire({
         icon: 'error',
@@ -51,7 +50,6 @@ function SelectLevelPage() {
         const session = await axios.post('/session', data);
         const questions = session.data.questions;
         const session_id = session.data.session._id;
-        console.log(session_id);
         history.push(`/train/game/${session_id}`, {
           state: { questions },
         });
@@ -74,6 +72,7 @@ function SelectLevelPage() {
       <div className="level__container">
         <h2>Select your level</h2>
         <div
+          id="junior-div"
           className={
             level === 'junior' ? 'level__button-container-selected' : 'level__button-container'
           }
