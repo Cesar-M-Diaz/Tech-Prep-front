@@ -73,8 +73,8 @@ function Navbar({ toggleMenu }) {
             <p onClick={handleClick} id="train-m">
               train
             </p>
-            <p onClick={handleClick} id="add_questions-m">
-              add questions
+            <p onClick={handleClick} id="questions/my_questions-m">
+              questions
             </p>
             <p onClick={handleClick} id="sessions-m">
               sessions
@@ -97,8 +97,8 @@ function Navbar({ toggleMenu }) {
                 <p onClick={handleClick} id="train-d">
                   train
                 </p>
-                <p onClick={handleClick} id="add_questions-d">
-                  add questions
+                <p onClick={handleClick} id="questions/my_questions-d">
+                  questions
                 </p>
                 <p onClick={handleClick} id="sessions-d">
                   sessions

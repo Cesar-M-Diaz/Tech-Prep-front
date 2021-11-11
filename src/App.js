@@ -6,9 +6,11 @@ import LandingPage from './pages/LandingPage';
 import Register from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
 import Layout from './components/Layout';
+import LayoutQuestions from './components/LayoutQuestions';
 import HomePage from './pages/HomePage';
 import Profile from './pages/Profile';
 import CreateCard from './pages/CreateCardPage';
+import MyQuestions from './pages/MyQuestionsPage';
 import SelectLevelPage from './pages/SelectLevelPage';
 import GamePage from './pages/GamePage';
 import ScorePage from './pages/ResultPage';
@@ -20,6 +22,7 @@ import getUserData from './actions/getUserData';
 import { AUTH_FAILED } from './actions/constants';
 import './assets/styles/pages/App.css';
 import SessionScorePage from './pages/SessionScore';
+import EditCardPage from './pages/EditCardPage';
 
 function App() {
   const token = useSelector((state) => state.token);
@@ -42,7 +45,19 @@ function App() {
         <Route exact path="/login" component={LoginPage} />
         <PrivateRoute exact path="/home" layout={Layout} component={HomePage} />
         <PrivateRoute exact path="/profile" layout={Layout} component={Profile} />
-        <PrivateRoute exact path="/add_questions" layout={Layout} component={CreateCard} />
+        <PrivateRoute
+          exact
+          path="/questions/add_questions"
+          layout={LayoutQuestions}
+          component={CreateCard}
+        />
+        <PrivateRoute exact path="/question/edit/:id" layout={Layout} component={EditCardPage} />
+        <PrivateRoute
+          exact
+          path="/questions/my_questions"
+          layout={LayoutQuestions}
+          component={MyQuestions}
+        />
         <PrivateRoute exact path="/train" layout={Layout} component={SelectLevelPage} />
         <PrivateRoute exact path="/train/score/:id" layout={Layout} component={ScorePage} />
         <PrivateRoute exact path="/session/:id" layout={Layout} component={GamePage} />
