@@ -1,0 +1,60 @@
+@import '../../../index.scss';
+
+.my-questions__container {
+  min-height: calc(100vh - 115px);
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0 auto 30px auto;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 10px;
+  justify-content: space-around;
+}
+
+.my-question__question {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  margin: 0 auto 20px auto;
+  .my-question__container-buttons {
+    box-sizing: border-box;
+    position: absolute;
+    bottom: -25px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    button {
+      width: 45%;
+      height: 30px;
+      font-size: 1rem;
+      font-weight: 400;
+      color: $unselected-color;
+      background-color: white;
+      border: 2px solid $unselected-color;
+      border-radius: 10px;
+      transition: 0.2s ease-in-out;
+      &:hover {
+        color: white;
+        background-color: $button-color-hover;
+        border: 2px solid $button-color-hover;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .my-questions__container {
+    min-height: calc(100vh - 170px);
+    width: 90%;
+    padding: 0 20px;
+  }
+  .my-question__question {
+    width: auto;
+    margin: 0 10px 30px 10px;
+  }
+}

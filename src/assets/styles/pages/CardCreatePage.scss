@@ -281,12 +281,26 @@ p {
 
 @media (min-width: 1200px) {
   .create-card__page-body {
-    width: 1200px;
+    width: 100%;
+    justify-content: space-evenly;
   }
   .create-card__preview-container {
     width: 40%;
   }
   .create-card__form {
     width: 45%;
+  }
+}
+
+@media (min-width: 1400px) {
+  .create-card__page-body {
+    width: 100%;
+    justify-content: space-evenly;
+  }
+  .create-card__preview-container {
+    width: 30%;
+  }
+  .create-card__form {
+    width: 35%;
   }
 }

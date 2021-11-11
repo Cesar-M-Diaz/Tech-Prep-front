@@ -1,0 +1,124 @@
+@import '../../../index.scss';
+
+.layout-divission {
+  min-height: calc(100vh - 70px - 45px);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  width: 100%;
+  &-active {
+    @extend .layout-questions__container;
+    transition: 0.5s;
+    margin-top: 515px;
+  }
+  &-hidden {
+    @extend .layout-questions__container;
+    transition: 0.5s;
+    margin-top: 80px;
+  }
+}
+
+.layout-button-container {
+  display: none;
+}
+
+.layout-select-container {
+  box-sizing: border-box;
+  padding: 20px;
+  select {
+    width: 100%;
+    height: 50px;
+    letter-spacing: 1px;
+    border-radius: 5px;
+    border: solid 2px $unselected-color;
+    background-color: white;
+    color: $unselected-color;
+    font-size: 1.2rem;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      box-shadow: -15px 20px 0px 0px $background-figures-color;
+      border: solid 2px $button-color-hover;
+      background-color: white;
+      color: $button-color-hover;
+    }
+  }
+}
+
+.layout-questions__container {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media screen and (min-width: 768px) {
+  .layout-divission-hidden {
+    min-height: calc(100vh - 170px);
+  }
+  .layout-select-container {
+    width: 70%;
+    margin: 130px auto 0 auto;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .layout-select-container {
+    width: 992px;
+    margin: 130px auto 0 auto;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .layout-select-container {
+    display: none;
+  }
+  .layout-questions__container {
+    width: 85%;
+  }
+  .layout-divission-hidden {
+    flex-direction: row;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin-top: 100px;
+    width: 100%;
+  }
+
+  .layout-button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 20%;
+    height: 130px;
+    margin-top: 50px;
+    .questions-layout {
+      width: 200px;
+      height: 50px;
+      letter-spacing: 1px;
+      border-radius: 5px;
+      border: solid 2px $unselected-color;
+      background-color: white;
+      color: $unselected-color;
+      font-size: 1.2rem;
+      font-weight: 400;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      &:hover {
+        box-shadow: -15px 20px 0px 0px $background-figures-color;
+        border: solid 2px $button-color-hover;
+        background-color: white;
+        color: $button-color-hover;
+      }
+      &.selected {
+        border: solid 2px $button-color-hover;
+        background-color: white;
+        color: $button-color-hover;
+        box-shadow: -15px 20px 0px 0px $background-figures-color;
+      }
+    }
+  }
+}

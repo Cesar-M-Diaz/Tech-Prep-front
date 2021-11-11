@@ -81,7 +81,7 @@ function HomePage() {
             ) : (
               <Slider {...settings}>
                 {questions?.map((question, idx) => (
-                  <div key={question.user_id._id} className="home-slide">
+                  <div key={question._id} className="home-slide">
                     <p className="home-slide__text">
                       Added by: <span>{question.user_id.name}</span>{' '}
                     </p>

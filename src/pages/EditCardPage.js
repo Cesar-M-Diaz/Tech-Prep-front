@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import CardEdit from '../components/CardEdit';
 import axios from '../utils/axios';
+import history from '../utils/history';
 import { swalStyled } from '../components/SwalCongfig';
-import '../assets/styles/pages/CardCreatePage.scss';
+import '../assets/styles/pages/EditCard.scss';
 
-function CreateCardPage() {
+function EditCardPage(props) {
   const user_id = useSelector((state) => state.currentUser._id);
+  const id = props.match.params.id;
   const [count, setCount] = useState(1);
   const [isAnswer, setIsAnswer] = useState({
     option_1: false,
@@ -25,16 +27,56 @@ function CreateCardPage() {
     answer: '',
   });
   const [errors, setErrors] = useState({
-    technology: '',
-    level: '',
-    question: '',
-    option_1: '',
-    option_2: '',
-    option_3: '',
-    title: '',
-    explanation: '',
+    technology: false,
+    level: false,
+    question: false,
+    option_1: false,
+    option_2: false,
+    option_3: false,
+    title: false,
+    explanation: false,
     submit: '',
   });
+
+  useEffect(() => {
+    async function getQuestionData(id) {
+      try {
+        const response = await axios.get(`/question/${id}`);
+        const {
+          question,
+          option_1,
+          option_2,
+          option_3,
+          title,
+          explanation,
+          answer,
+          technology,
+          level,
+        } = response.data;
+        setQuestionData((prevState) => ({
+          ...prevState,
+          technology,
+          level,
+          question,
+          option_1,
+          option_2,
+          option_3,
+          title,
+          explanation,
+          answer,
+        }));
+        setIsAnswer((prevState) => ({
+          ...prevState,
+          option_1: answer === response.data.option_1,
+          option_2: answer === response.data.option_2,
+          option_3: answer === response.data.option_3,
+        }));
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    getQuestionData(id);
+  }, [id]);
 
   const handleChange = (e) => {
     setQuestionData((prevState) => ({
@@ -111,10 +153,10 @@ function CreateCardPage() {
       }));
       const data = { ...questionData, user_id };
       try {
-        const response = await axios.post('/question', data);
+        await axios.put(`/question/${id}`, data);
         swalStyled.fire({
           icon: 'success',
-          title: `Question ${response.statusText}`,
+          title: `Question updated`,
         });
         setQuestionData({
           technology: false,
@@ -132,6 +174,7 @@ function CreateCardPage() {
           option_2: false,
           option_3: false,
         });
+        history.push('/questions/my_questions');
       } catch (error) {
         swalStyled.fire({
           icon: 'error',
@@ -144,7 +187,7 @@ function CreateCardPage() {
         ...prevState,
         submit: 'Please fill the form correctly and select an answer',
       }));
-    } else {
+    } else if (questionData.technology === '' || questionData.level === '') {
       setErrors((prevState) => ({
         ...prevState,
         technology: 'Please select the technology and level',
@@ -207,7 +250,10 @@ function CreateCardPage() {
   return (
     <div className="create-card__page-body">
       <form onSubmit={handleSubmit} className="create-card__form">
-        <h3>Create new question</h3>
+        <div className="edit-card__title">
+          <h3>Edit question</h3>
+          <button onClick={() => history.push('/questions/my_questions')}>cancel</button>
+        </div>
         {count === 1 && (
           <>
             <div className="create-card__select-container">
@@ -389,4 +435,4 @@ function CreateCardPage() {
   );
 }
 
-export default CreateCardPage;
+export default EditCardPage;
