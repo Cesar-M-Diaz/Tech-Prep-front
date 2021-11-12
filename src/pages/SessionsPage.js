@@ -36,6 +36,10 @@ function SessionsPage() {
       <div className="sessions__sessions-container">
         {isloading ? (
           <Loader2 />
+        ) : sessions.length === 0 ? (
+          <h2 className="sessions__title-no-sessions">
+            You have no sessions yet, start practicing
+          </h2>
         ) : (
           sessions?.map((session) => <Session data={session} key={session._id} />)
         )}

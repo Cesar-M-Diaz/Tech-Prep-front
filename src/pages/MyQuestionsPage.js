@@ -5,16 +5,18 @@ import axios from '../utils/axios';
 import Loader2 from '../components/Loader2';
 import { swalStyled, swalStyledDelete } from '../components/SwalCongfig';
 import history from '../utils/history';
+import { useSelector } from 'react-redux';
 import '../assets/styles/pages/MyQuestions.scss';
 
 function MyQuestionsPage() {
+  const user_id = useSelector((state) => state.currentUser._id);
   const [questions, setQuestions] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    async function getQuestions() {
+    async function getQuestions(user_id) {
       try {
-        const { data } = await axios.get('/question');
+        const { data } = await axios.get(`/questions/${user_id}`);
         setQuestions(data);
         setIsLoading(false);
       } catch (e) {
@@ -25,8 +27,8 @@ function MyQuestionsPage() {
         });
       }
     }
-    getQuestions();
-  }, []);
+    getQuestions(user_id);
+  }, [user_id]);
 
   async function handleClick(e) {
     e.preventDefault();
@@ -70,6 +72,8 @@ function MyQuestionsPage() {
     <div className="my-questions__container">
       {isLoading ? (
         <Loader2 />
+      ) : questions.length === 0 ? (
+        <h2 className="my-question__no-questions-text">Go ahead and create your first question</h2>
       ) : (
         questions?.map((question) => (
           <div id={question._id} key={question._id} className="my-question__question">
