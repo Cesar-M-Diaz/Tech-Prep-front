@@ -1,4 +1,5 @@
 import Swal from 'sweetalert2';
+import '../assets/styles/components/Swal.scss';
 
 export const swalStyled = Swal.mixin({
   customClass: {

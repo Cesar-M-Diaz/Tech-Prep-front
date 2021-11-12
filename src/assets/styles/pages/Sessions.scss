@@ -11,6 +11,20 @@
   padding: 20px;
 }
 
+.sessions__title-no-sessions {
+  text-align: center;
+  margin: auto;
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: $text-color;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+}
+
 .sessions__title-container {
   margin-top: 20px;
   display: flex;
