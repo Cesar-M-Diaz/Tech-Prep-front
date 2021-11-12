@@ -18,6 +18,9 @@
     border: 2px solid $gradient-nav-b;
     color: white;
   }
+  &:focus {
+    outline: none;
+  }
 }
 
 // .swal__cancel {
@@ -50,6 +53,9 @@
     border: 2px solid $button-color-hover;
     color: white;
   }
+  &:focus {
+    outline: none;
+  }
 }
 
 .swal__delete-cancel {
@@ -69,5 +75,8 @@
     background-color: $unselected-color;
     border: 2px solid $unselected-color;
     color: white;
+  }
+  &:focus {
+    outline: none;
   }
 }

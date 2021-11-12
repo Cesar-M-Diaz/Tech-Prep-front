@@ -149,6 +149,7 @@ function CreateCardPage() {
         ...prevState,
         technology: 'Please select the technology and level',
         level: 'Please select the technology and level',
+        submit: 'Please select the technology and level',
       }));
     }
   }
