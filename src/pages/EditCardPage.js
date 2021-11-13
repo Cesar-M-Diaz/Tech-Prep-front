@@ -224,7 +224,7 @@ function EditCardPage(props) {
         ...prevState,
         [name]: 'Question must me less than 165 characters',
       }));
-    } else if (name === 'explanation' && value.length > 445) {
+    } else if (name === 'explanation' && value.length > 530) {
       setErrors((prevState) => ({
         ...prevState,
         [name]: 'Explanation must me less than 445 characters',

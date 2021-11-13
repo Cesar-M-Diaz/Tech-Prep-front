@@ -94,7 +94,20 @@ function CreateCardPage() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    if (
+
+    if (questionData.answer === '') {
+      setErrors((prevState) => ({
+        ...prevState,
+        submit: 'Please fill the form correctly and select an answer',
+      }));
+    } else if (questionData.level === '' || questionData.technology === '') {
+      setErrors((prevState) => ({
+        ...prevState,
+        technology: 'Please select the technology and level',
+        level: 'Please select the technology and level',
+        submit: 'Please select the technology and level',
+      }));
+    } else if (
       errors.technology === false &&
       errors.level === false &&
       errors.question === false &&
@@ -139,18 +152,6 @@ function CreateCardPage() {
           text: error.message,
         });
       }
-    } else if (questionData.answer === '') {
-      setErrors((prevState) => ({
-        ...prevState,
-        submit: 'Please fill the form correctly and select an answer',
-      }));
-    } else {
-      setErrors((prevState) => ({
-        ...prevState,
-        technology: 'Please select the technology and level',
-        level: 'Please select the technology and level',
-        submit: 'Please select the technology and level',
-      }));
     }
   }
 
@@ -182,7 +183,7 @@ function CreateCardPage() {
         ...prevState,
         [name]: 'Question must me less than 165 characters',
       }));
-    } else if (name === 'explanation' && value.length > 445) {
+    } else if (name === 'explanation' && value.length > 530) {
       setErrors((prevState) => ({
         ...prevState,
         [name]: 'Explanation must me less than 445 characters',
@@ -202,7 +203,7 @@ function CreateCardPage() {
 
   // measure max length of input
   // const text =
-  //   'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum';
+  // 'In React, for every DOM object, there is a corresponding “virtual DOM object.” A virtual DOM object is a representation of a DOM object, like a lightweight copy. A virtual DOM object has the same properties as a real DOM object, but it lacks the real thing’s power to directly change what’s on the screen. Manipulating the DOM is slow. Manipulating the virtual DOM is much faster, because nothing gets drawn onscreen.';
   // console.log(text.length);
 
   return (
