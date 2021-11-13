@@ -40,6 +40,22 @@ function HomePage() {
     prevArrow: <PrevArrow />,
     responsive: [
       {
+        breakpoint: 1400,
+        settings: {
+          centerMode: false,
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 1200,
+        settings: {
+          centerMode: false,
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
         breakpoint: 992,
         settings: {
           centerMode: false,

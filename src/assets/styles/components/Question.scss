@@ -85,7 +85,7 @@
 
   .question__explanation-container {
     width: 100%;
-    height: 70%;
+    height: 80%;
     p {
       padding: 0;
       text-align: justify;
@@ -129,45 +129,45 @@
 
 @media (min-width: 500px) {
   .question__base {
-    width: 300px;
-    height: 400px;
+    width: 290px;
+    height: 450px;
   }
 }
 @media (min-width: 768px) {
   .question__base {
-    width: 300px;
-    height: 400px;
+    width: 290px;
+    height: 450px;
   }
 }
 
 @media (min-width: 992px) {
   .question__base {
-    width: 270px;
-    height: 400px;
+    width: 290px;
+    height: 450px;
   }
   .question__flip {
-    width: 270px;
-    height: 400px;
+    width: 290px;
+    height: 450px;
   }
 }
 @media (min-width: 1200px) {
   .question__base {
-    width: 265px;
-    height: 400px;
+    width: 290px;
+    height: 450px;
   }
   .question__flip {
-    width: 265px;
-    height: 400px;
+    width: 290px;
+    height: 450px;
   }
 }
 @media (min-width: 1400px) {
   .question__base {
-    width: 280px;
-    height: 400px;
+    width: 290px;
+    min-height: 450px;
   }
 
   .question__flip {
-    width: 280px;
-    height: 400px;
+    width: 290px;
+    min-height: 450px;
   }
 }
