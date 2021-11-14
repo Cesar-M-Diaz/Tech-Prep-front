@@ -38,10 +38,10 @@ function MyQuestionsPage() {
     }
     return questions.filter(
       (question) =>
-        question.technology.toLowerCase().includes(query) ||
-        question.question.toLowerCase().includes(query) ||
-        question.level.toLowerCase().includes(query) ||
-        question.title.toLowerCase().includes(query),
+        question.technology.toLowerCase().includes(query).toLowerCase() ||
+        question.question.toLowerCase().includes(query).toLowerCase() ||
+        question.level.toLowerCase().includes(query).toLowerCase() ||
+        question.title.toLowerCase().includes(query).toLowerCase(),
     );
   };
 
