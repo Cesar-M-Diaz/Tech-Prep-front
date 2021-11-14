@@ -6,12 +6,14 @@ import Loader2 from '../components/Loader2';
 import { swalStyled, swalStyledDelete } from '../components/SwalCongfig';
 import history from '../utils/history';
 import { useSelector } from 'react-redux';
+import { BsSearch } from 'react-icons/bs';
 import '../assets/styles/pages/MyQuestions.scss';
 
 function MyQuestionsPage() {
   const user_id = useSelector((state) => state.currentUser._id);
   const [questions, setQuestions] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [query, setQuery] = useState('');
 
   useEffect(() => {
     async function getQuestions(user_id) {
@@ -29,6 +31,25 @@ function MyQuestionsPage() {
     }
     getQuestions(user_id);
   }, [user_id]);
+
+  const getFilteredItems = (query, questions) => {
+    if (query === '') {
+      return questions;
+    }
+    return questions.filter(
+      (question) =>
+        question.technology.toLowerCase().includes(query) ||
+        question.question.toLowerCase().includes(query) ||
+        question.level.toLowerCase().includes(query) ||
+        question.title.toLowerCase().includes(query),
+    );
+  };
+
+  const filteredQuestions = getFilteredItems(query, questions);
+
+  function handleChange(e) {
+    setQuery(e.target.value);
+  }
 
   async function handleClick(e) {
     e.preventDefault();
@@ -69,26 +90,38 @@ function MyQuestionsPage() {
   }
 
   return (
-    <div className="my-questions__container">
-      {isLoading ? (
-        <Loader2 />
-      ) : questions.length === 0 ? (
-        <h2 className="my-question__no-questions-text">Go ahead and create your first question</h2>
-      ) : (
-        questions?.map((question) => (
-          <div id={question._id} key={question._id} className="my-question__question">
-            <Questions data={question} />
-            <div className="my-question__container-buttons">
-              <button className="my-question__edit-button" name="edit" onClick={handleClick}>
-                edit
-              </button>
-              <button className="my-question__delete-button" name="delete" onClick={handleClick}>
-                delete
-              </button>
+    <div className="my-questions__container-page">
+      <div className="my-question-container__input">
+        <span className="my-question-input__icon">
+          <BsSearch />
+        </span>
+        <input type="text" name="search" onChange={handleChange} className="my-question-input" />
+      </div>
+      <div className="my-questions__container">
+        {isLoading ? (
+          <Loader2 />
+        ) : questions.length === 0 ? (
+          <h2 className="my-question__no-questions-text">
+            Go ahead and create your first question
+          </h2>
+        ) : filteredQuestions.length === 0 ? (
+          <h2 className="my-question__no-questions-text">No questions found</h2>
+        ) : (
+          filteredQuestions?.map((question) => (
+            <div id={question._id} key={question._id} className="my-question__question">
+              <Questions data={question} />
+              <div className="my-question__container-buttons">
+                <button className="my-question__edit-button" name="edit" onClick={handleClick}>
+                  edit
+                </button>
+                <button className="my-question__delete-button" name="delete" onClick={handleClick}>
+                  delete
+                </button>
+              </div>
             </div>
-          </div>
-        ))
-      )}
+          ))
+        )}
+      </div>
     </div>
   );
 }
