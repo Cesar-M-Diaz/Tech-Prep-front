@@ -2,7 +2,7 @@
 
 This is the personal project developed during two weeks in the make it real bootcamp.
 Tech-prep is my way to contribute something to the community, it is a project to train technical concepts to become better developers.
-If you want to contribute to this educational tool please feel free to fork the repo and do some commits.
+If you want to contribute to this educational tool please feel free to clone the repo and do some commits.
 
 ## The project:
 
@@ -10,6 +10,8 @@ The project consists of a card game where you will see multiple choice questions
 At the moment there is no Admin page, that is the next step, so for the time being, take seriously the questions you are going to create so we can all grow together.
 (As I write this readme I realize that I should probably have an instruction page in the web application, so this will be my first task after the public demo.)
 For the backend go here [https://github.com/Cesar-M-Diaz/Tech-Prep-Back](https://github.com/Cesar-M-Diaz/Tech-Prep-Back)
+
+`Clone the repo and run with npm start`
 
 ### `Add edit or delete questions`
 
