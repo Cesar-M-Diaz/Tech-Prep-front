@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+# Tech-Prep
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is the personal project developed during two weeks in the make it real bootcamp.
+Tech-prep is my way to contribute something to the community, it is a project to train technical concepts to become better developers.
+If you want to contribute to this educational tool please feel free to fork the repo and do some commits.
 
-## Available Scripts
+## The project:
 
-In the project directory, you can run:
+The project consists of a card game where you will see multiple choice questions and test your technical knowledge. As more users create more questions the game will grow in topics and difficulty levels.
+At the moment there is no Admin page, that is the next step, so for the time being, take seriously the questions you are going to create so we can all grow together.
+(As I write this readme I realize that I should probably have an instruction page in the web application, so this will be my first task after the public demo.)
+For the backend go here [https://github.com/Cesar-M-Diaz/Tech-Prep-Back](https://github.com/Cesar-M-Diaz/Tech-Prep-Back)
 
-### `npm start`
+### `Add edit or delete questions`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+As a user you can create your own questions, manage them from the questions bar and delete them if you wish.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+`Create a question card`
 
-### `npm test`
+![](public/images-readme/create%20question.PNG)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+`View your question cards`
 
-### `npm run build`
+![](public/images-readme/questions.PNG)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+`Edit a question`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![](public/images-readme/edit.PNG)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### `play the game`
 
-### `npm run eject`
+At the moment there is only the junior level, the questions will be about basic JavaScript or React concepts. Feel free to add more levels and questions.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+`Select the level`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![](public/images-readme/level.PNG)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+`Play the game`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![](public/images-readme/game.PNG)
 
-## Learn More
+### `review your training sessions`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+At the end of each game you will be presented with the wrong answers, in the session section you can see the history of the previous games.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+`review your session result`
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![](public/images-readme/sessions.PNG)
