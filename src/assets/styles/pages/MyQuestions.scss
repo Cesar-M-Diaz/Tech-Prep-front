@@ -1,0 +1,165 @@
+@import '../../../index.scss';
+
+.my-questions__container-page {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.my-questions__container {
+  min-height: calc(100vh - 250px);
+  box-sizing: border-box;
+  width: auto;
+  margin: 0 auto 30px auto;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 auto;
+}
+
+.my-question-container__input {
+  transition: 0.2s ease-in-out;
+  box-sizing: border-box;
+  border: 2px solid $unselected-color;
+  border-radius: 5px;
+  padding: 5px;
+  width: calc(100vw - 40px);
+  height: 40px;
+  display: flex;
+  align-items: center;
+  margin: 20px auto;
+  &:hover {
+    box-shadow: -15px 10px 0px 0px $background-figures-color;
+    border: 2px solid $button-color-hover;
+    .my-question-input__icon {
+      color: $button-color-hover;
+    }
+  }
+  .my-question-input__icon {
+    transition: 0.2s ease-in-out;
+    box-sizing: border-box;
+    padding-left: 5px;
+    margin-right: 10px;
+    width: 10%;
+    color: $unselected-color;
+    font-size: 20px;
+  }
+  .my-question-input {
+    box-sizing: border-box;
+    font-size: $input-font-size;
+    color: $text-color;
+    font-family: 'Open Sans', sans-serif;
+    width: 90%;
+    height: 100%;
+    border: none;
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.my-question__no-questions-text {
+  margin: 0 auto;
+  text-align: center;
+  width: 80%;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $text-color;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+}
+
+.my-question__question {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 560px;
+  margin: 0 auto 20px auto;
+  .my-question__container-buttons {
+    box-sizing: border-box;
+    position: absolute;
+    bottom: -25px;
+    width: 280px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px auto;
+    .my-question__delete-button {
+      width: 45%;
+      height: 30px;
+      font-size: 1rem;
+      font-weight: 400;
+      color: $unselected-color;
+      background-color: white;
+      border: 2px solid $unselected-color;
+      border-radius: 10px;
+      transition: 0.2s ease-in-out;
+      &:hover {
+        color: white;
+        background-color: $button-color-hover;
+        border: 2px solid $button-color-hover;
+        cursor: pointer;
+      }
+    }
+    .my-question__edit-button {
+      @extend .my-question__delete-button;
+      &:hover {
+        color: white;
+        background-color: $gradient-nav-b;
+        border: 2px solid $gradient-nav-b;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .my-questions__container {
+    min-height: calc(100vh - 200px);
+    width: 98%;
+    padding: 0 20px;
+  }
+  .my-question__question {
+    width: calc(100% / 2);
+    margin: 0 0 30px 0;
+  }
+  .my-question-container__input {
+    width: 65%;
+  }
+}
+
+@media (min-width: 992px) {
+  .my-question__question {
+    width: calc(100% / 2);
+  }
+  .my-question-container__input {
+    width: 76%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .my-question-container__input {
+    margin-top: 50px;
+    width: 77%;
+  }
+}
+
+@media (min-width: 1300px) {
+  .my-question__question {
+    width: calc(100% / 3);
+  }
+  .my-question-container__input {
+    width: 88%;
+  }
+}
+
+@media (min-width: 1600px) {
+  .my-question__question {
+    width: calc(100% / 4);
+  }
+  .my-question-container__input {
+    width: 92%;
+  }
+}

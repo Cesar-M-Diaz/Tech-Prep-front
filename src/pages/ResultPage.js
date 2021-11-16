@@ -1,15 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Questions from '../components/Questions';
 import Slider from 'react-slick';
-import history from '../utils/history';
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
+import history from '../utils/history';
+import axios from '../utils/axios';
+import { swalStyled } from '../components/SwalCongfig';
+import Loader2 from '../components/Loader2';
 import '../assets/styles/pages/ResultPage.scss';
 
-function ResultPage() {
-  const [result] = useState(12);
-  const [questionsNumber] = useState(15);
+function ResultPage(props) {
+  const id = props.match.params.id;
+  const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(1);
-  // const [answers, setAnswers] = useState('');
+  const [wrongAnswers, setWrongAnswers] = useState([]);
+  const [scoreData, setScoreData] = useState({
+    correct: '',
+    total: '',
+  });
 
   const NextArrow = ({ onClick }) => {
     return (
@@ -48,58 +55,27 @@ function ResultPage() {
     ],
   };
 
-  const answers = [
-    {
-      id: 1,
-      question: '¿Cuál es la capital de México?',
-      option_1: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      option_2: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      option_3: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      explanation:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque omnis corrupti, quibusdam quis autem aliquid deserunt voluptates repudiandae ducimus dolorum molestias nihil ipsa! Quam eveniet delectus officiis vitae at quaerat? Neque dicta, recusandae totam eos nam facere perspiciatis ipsa aspernatur rerum quam inventore.',
-      title: 'recursion',
-    },
-    {
-      id: 2,
-      question: '¿Cuál es la capital de colombia?',
-      option_1: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      option_2: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      option_3: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      explanation:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque omnis corrupti, quibusdam quis autem aliquid deserunt voluptates repudiandae ducimus dolorum molestias nihil ipsa! Quam eveniet delectus officiis vitae at quaerat? Neque dicta, recusandae totam eos nam facere perspiciatis ipsa aspernatur rerum quam inventore.',
-      title: 'recursion 2',
-    },
-    {
-      id: 3,
-      question: '¿Cuál es la capital de chile?',
-      option_1: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      option_2: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      option_3: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      explanation:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque omnis corrupti, quibusdam quis autem aliquid deserunt voluptates repudiandae ducimus dolorum molestias nihil ipsa! Quam eveniet delectus officiis vitae at quaerat? Neque dicta, recusandae totam eos nam facere perspiciatis ipsa aspernatur rerum quam inventore.',
-      title: 'recursion 3',
-    },
-    {
-      id: 4,
-      question: '¿Cuál es la capital de perú?',
-      option_1: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      option_2: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      option_3: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      explanation:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque omnis corrupti, quibusdam quis autem aliquid deserunt voluptates repudiandae ducimus dolorum molestias nihil ipsa! Quam eveniet delectus officiis vitae at quaerat? Neque dicta, recusandae totam eos nam facere perspiciatis ipsa aspernatur rerum quam inventore.',
-      title: 'recursion 4',
-    },
-    {
-      id: 5,
-      question: '¿Cuál es la capital de ecuador?',
-      option_1: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      option_2: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      option_3: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      explanation:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque omnis corrupti, quibusdam quis autem aliquid deserunt voluptates repudiandae ducimus dolorum molestias nihil ipsa! Quam eveniet delectus officiis vitae at quaerat? Neque dicta, recusandae totam eos nam facere perspiciatis ipsa aspernatur rerum quam inventore.',
-      title: 'recursion 5',
-    },
-  ];
+  useEffect(() => {
+    async function getAnwers(id) {
+      try {
+        const sessionData = await axios.get(`/session/${id}`);
+        const wrong_answers = sessionData.data.wrong_questions;
+        setWrongAnswers(wrong_answers);
+        setScoreData({
+          correct: sessionData.data.session.correct_answers.length,
+          total: sessionData.data.session.question_number,
+        });
+        setIsLoading(false);
+      } catch (err) {
+        swalStyled.fire({
+          icon: 'error',
+          title: 'Oops... Please try again',
+          text: err.message,
+        });
+      }
+    }
+    getAnwers(id);
+  }, [id]);
 
   return (
     <div className="score__page">
@@ -109,7 +85,7 @@ function ResultPage() {
           <div className="score__result-page-inner">
             <div className="score__result__number-container">
               <h2>
-                {result}/{questionsNumber}
+                {scoreData.correct}/{scoreData.total}
               </h2>
             </div>
             <div className="score__button-container desktop" onClick={() => setPage(page + 1)}>
@@ -119,7 +95,11 @@ function ResultPage() {
             </div>
             <div className="score__result__message-container">
               <div>
-                {result < questionsNumber * 0.85 ? <h2>Keep practicing</h2> : <h2>Great job !</h2>}
+                {scoreData.correct < scoreData.total * 0.85 ? (
+                  <h2>Keep practicing</h2>
+                ) : (
+                  <h2>Great job !</h2>
+                )}
               </div>
             </div>
           </div>
@@ -139,22 +119,32 @@ function ResultPage() {
               <p>Back</p>
               <div className="score__collapsible-b"></div>
             </div>
-            <h1 className="score__title-container-desktop">Failed questions</h1>
+            <h1 className="score__title-container-desktop">Wrong Answers</h1>
             <div className="score__button-container" onClick={() => history.push('/train')}>
               <div className="score__collapsible-a"></div>
               <p>Finish</p>
               <div className="score__collapsible-b"></div>
             </div>
           </div>
-          <div className="score-answers-container">
-            <Slider {...settings}>
-              {answers?.map((answer) => (
-                <div className="score-slide">
-                  <Questions data={answer} />
-                </div>
-              ))}
-            </Slider>
-          </div>
+          {isLoading ? (
+            <div className="score-loader_container">
+              <Loader2 />
+            </div>
+          ) : wrongAnswers.length === 0 ? (
+            <p className="result-page__success_message">
+              Nothing to see here!! you did great, keep the good work
+            </p>
+          ) : (
+            <div className="score-answers-container">
+              <Slider {...settings}>
+                {wrongAnswers?.map((answer) => (
+                  <div key={answer._id} className="score-slide">
+                    <Questions data={answer} />
+                  </div>
+                ))}
+              </Slider>
+            </div>
+          )}
         </div>
       )}
     </div>

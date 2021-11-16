@@ -1,0 +1,23 @@
+.error__illustration {
+  width: 90%;
+  height: calc(100vh - 115px);
+}
+
+/* Tablets */
+
+@media (min-width: 768px) {
+  .error__illustration {
+    width: 70%;
+    height: calc(100vh - 170px);
+  }
+}
+/* Monitores */
+
+@media (min-width: 992px) {
+  .error__illustration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40vw;
+  }
+}

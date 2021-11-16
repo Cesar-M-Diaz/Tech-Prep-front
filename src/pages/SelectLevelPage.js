@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
-import '../assets/styles/pages/SelectLevel.scss';
+import { useSelector } from 'react-redux';
 import history from '../utils/history';
+import axios from '../utils/axios';
+import { swalStyled } from '../components/SwalCongfig';
+import '../assets/styles/pages/SelectLevel.scss';
 
 function SelectLevelPage() {
+  const user_id = useSelector((state) => state.currentUser._id);
   const [showAmmount, setShowAmmount] = useState({
     javascript: false,
     react: false,
   });
-  const [questionNumber, setQuestionNumber] = useState('');
+  const [question_number, setQuestion_number] = useState('');
   const [technology, setTechnology] = useState('');
   const [level, setLevel] = useState('');
 
@@ -29,22 +33,38 @@ function SelectLevelPage() {
   }
 
   function selectlevel(e) {
-    const levelName = e.target.innerText.toLowerCase();
+    const levelName = e.nativeEvent.path[1].innerText.toLowerCase();
     setLevel(levelName);
   }
 
-  function startGame(e) {
+  async function startGame(e) {
     e.preventDefault();
-    if (questionNumber === '' || level === '') {
-      alert('Please select the level and number of questions');
+    const data = { user_id, technology, level, question_number };
+    if (question_number === '' || level === '' || technology === '') {
+      swalStyled.fire({
+        icon: 'error',
+        title: 'Please select the level and number of questions',
+      });
     } else {
-      history.push(`train/game`);
-      console.log({ technology: technology, level: level, questionNumber: questionNumber });
+      try {
+        const session = await axios.post('/session', data);
+        const questions = session.data.questions;
+        const session_id = session.data.session._id;
+        history.push(`/train/game/${session_id}`, {
+          state: { questions },
+        });
+      } catch (error) {
+        swalStyled.fire({
+          icon: 'error',
+          title: 'Oops... Please try again',
+          text: error.message,
+        });
+      }
     }
   }
 
   function handleChange(e) {
-    setQuestionNumber(e.target.value);
+    setQuestion_number(e.target.value);
   }
 
   return (
@@ -52,6 +72,7 @@ function SelectLevelPage() {
       <div className="level__container">
         <h2>Select your level</h2>
         <div
+          id="junior-div"
           className={
             level === 'junior' ? 'level__button-container-selected' : 'level__button-container'
           }
@@ -93,9 +114,9 @@ function SelectLevelPage() {
                     <option value="" hidden>
                       number of questions
                     </option>
+                    <option value="5">5</option>
                     <option value="10">10</option>
                     <option value="15">15</option>
-                    <option value="20">20</option>
                   </select>
                   <button onClick={startGame}>start</button>
                 </div>
@@ -120,9 +141,9 @@ function SelectLevelPage() {
                     <option value="" hidden>
                       number of questions
                     </option>
+                    <option value="5">5</option>
                     <option value="10">10</option>
                     <option value="15">15</option>
-                    <option value="20">20</option>
                   </select>
                   <button onClick={startGame}>start</button>
                 </div>

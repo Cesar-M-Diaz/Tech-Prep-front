@@ -20,7 +20,9 @@
   // height: 100%;
   width: 100%;
   h2 {
+    font-size: $title-font-size;
     color: $text-color;
+    margin-bottom: 30px;
   }
 }
 
@@ -33,22 +35,22 @@
   margin-top: 10px;
   p {
     font-family: 'Bebas Neue', cursive;
-    font-size: 1rem;
+    font-size: 1.2rem;
+    padding: 0 30px;
     margin: 0;
-    padding: 0 15px;
-    width: 100px;
+    width: 130px;
     text-align: center;
     color: $unselected-color;
   }
   .level__collapsible-a {
     transition: 0.5s;
-    width: 10%;
+    width: 37%;
     height: 30px;
     background-color: $unselected-color;
   }
   .level__collapsible-b {
     transition: 0.5s;
-    width: 70%;
+    width: 37%;
     height: 30px;
     background-color: $unselected-color;
   }
@@ -62,7 +64,7 @@
     }
     .level__collapsible-b {
       transition: 0.5s;
-      width: 40%;
+      width: 37%;
       background-color: $button-color-hover;
     }
     p {
@@ -79,9 +81,11 @@
   height: 30px;
   margin-top: 10px;
   p {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.2rem;
+    padding: 0 30px;
     margin: 0;
-    padding: 0 20px;
-    width: 70px;
+    width: 130px;
     text-align: center;
     color: $button-color-hover;
   }
@@ -93,7 +97,7 @@
   }
   .level__collapsible-b {
     transition: 0.5s;
-    width: 40%;
+    width: 37%;
     height: 30px;
     background-color: $button-color-hover;
   }
@@ -111,7 +115,8 @@
   width: 100%;
   h2 {
     color: $text-color;
-    margin: 30px 0;
+    margin: 50px 0 20px 0;
+    font-size: $title-font-size;
   }
 }
 
@@ -287,22 +292,50 @@
 @media (min-width: 992px) {
   .level__page-body {
     flex-direction: row;
-    align-items: flex-start;
+    align-items: flex-center;
     width: 992px;
   }
   .level__container {
     width: 40%;
     h2 {
       margin-top: 50px;
-      margin-bottom: 200px;
+      margin-bottom: 20vh;
     }
+    margin-bottom: calc(628.95px - 351.39px);
   }
   .level__button-container {
-    width: 80%;
+    width: 90%;
+    p {
+      width: 100px;
+    }
+    .level__collapsible-a {
+      width: 10%;
+    }
+    .level__collapsible-b {
+      width: 50%;
+    }
+    &:hover {
+      cursor: pointer;
+      .level__collapsible-a {
+        width: 30%;
+      }
+      .level__collapsible-b {
+        width: 30%;
+      }
+    }
   }
 
   .level__button-container-selected {
-    width: 80%;
+    width: 90%;
+    p {
+      width: 100px;
+    }
+    .level__collapsible-a {
+      width: 37%;
+    }
+    .level__collapsible-b {
+      width: 40%;
+    }
   }
 
   .level__technologies-container {
@@ -310,10 +343,11 @@
     height: auto;
     h2 {
       margin-top: 50px;
-      margin-bottom: 50px;
+      margin-bottom: 8vh;
     }
     .level__technologies-cards-container {
-      height: 500px;
+      justify-content: space-around;
+      height: 470px;
     }
   }
   .level__technology-card {
@@ -327,44 +361,15 @@
 
 @media (min-width: 1200px) {
   .level__page-body {
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
     width: 1200px;
+    justify-content: space-between;
   }
   .level__container {
-    width: 25%;
-    h2 {
-      margin-top: 50px;
-      margin-bottom: 200px;
-    }
-  }
-  .level__button-container {
-    width: 80%;
+    width: 30%;
   }
 
-  .level__button-container-selected {
-    width: 80%;
-  }
-
-  .level__technologies-container {
-    width: 70%;
-    h2 {
-      margin-top: 50px;
-      margin-bottom: 100px;
-    }
-    .level__technologies-cards-container {
-      height: 300px;
-    }
-  }
-  .level__technologies-cards-container {
-    flex-direction: row;
-    height: 300px;
-    width: 100%;
-    margin: auto 0;
-  }
   .level__technology-card {
-    width: 70%;
+    width: 80%;
     margin: 0 20px;
   }
 

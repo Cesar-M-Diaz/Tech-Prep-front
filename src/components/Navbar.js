@@ -73,12 +73,12 @@ function Navbar({ toggleMenu }) {
             <p onClick={handleClick} id="train-m">
               train
             </p>
-            <p onClick={handleClick} id="add_questions-m">
-              add questions
+            <p onClick={handleClick} id="questions/my_questions-m">
+              questions
             </p>
-            {/* <p onClick={handleClick} id="resources-m">
-              resources
-            </p> */}
+            <p onClick={handleClick} id="sessions-m">
+              sessions
+            </p>
           </div>
           <section className="header__container-wrapper">
             <div className="header__container">
@@ -97,12 +97,12 @@ function Navbar({ toggleMenu }) {
                 <p onClick={handleClick} id="train-d">
                   train
                 </p>
-                <p onClick={handleClick} id="add_questions-d">
-                  add questions
+                <p onClick={handleClick} id="questions/my_questions-d">
+                  questions
                 </p>
-                {/* <p onClick={handleClick} id="resources-d">
-                  resources
-                </p> */}
+                <p onClick={handleClick} id="sessions-d">
+                  sessions
+                </p>
                 <img
                   src={profilePhotoUser}
                   alt=""

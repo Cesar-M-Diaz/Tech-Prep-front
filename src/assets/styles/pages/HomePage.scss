@@ -7,8 +7,66 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 20px;
+  padding: 20px 20px 0 20px;
   background-color: white;
+}
+
+.home-answers-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: auto;
+  .home-slide__text {
+    color: $text-color;
+    margin-top: 15px;
+    margin-bottom: 0px;
+    font-size: 1rem;
+    text-align: center;
+    span {
+      font-weight: 600;
+      font-family: 'Bebas Neue', cursive;
+      letter-spacing: 1px;
+    }
+  }
+}
+
+.home-slide {
+  transform: scale(1);
+  transition: transform 300ms;
+  min-width: 290px;
+  opacity: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-arrow-next,
+.home-arrow-prev {
+  position: absolute;
+  cursor: pointer;
+  z-index: 10;
+  transition: color 300ms;
+  color: $button-color;
+  top: 55%;
+}
+
+.home-arrow-next {
+  right: -8px;
+}
+.home-arrow-prev {
+  left: -5px;
+}
+
+.home-arrow-next svg,
+.home-arrow-prev svg {
+  transition: color 300ms;
+  color: $button-color;
+  width: 20px;
+  height: 20px;
+  &:hover {
+    color: $button-color-hover;
+  }
 }
 
 .home__technologies-container {
@@ -20,7 +78,8 @@
   height: 200px;
   background-color: transparent;
   h2 {
-    font-size: 1.5rem;
+    margin: 20px 0 30px 0;
+    font-size: $title-font-size;
     letter-spacing: 1px;
     font-weight: 600;
     color: $text-color;
@@ -49,7 +108,8 @@
   h1 {
     text-align: center;
     margin-top: 50px;
-    font-size: 1.5rem;
+    margin-bottom: 50px;
+    font-size: $title-font-size;
     letter-spacing: 1px;
     font-weight: 600;
     color: $text-color;
@@ -81,7 +141,7 @@
   }
   .home__questions-container {
     width: 100%;
-    height: 1100px;
+    height: auto;
     margin-bottom: 40px;
     h1 {
       margin-top: 70px;
@@ -98,29 +158,41 @@
 @media screen and (min-width: 992px) {
   .home__body {
     height: auto;
-    width: 992px;
+    width: 99%;
     margin: 0 auto;
   }
   .home__questions-container {
     width: 100%;
     height: auto;
     h1 {
-      margin-top: 45px;
-      margin-bottom: 45px;
+      margin-top: 15px;
+      margin-bottom: 35px;
+    }
+    .home-answers-container {
+      min-height: 605px;
     }
   }
 }
 
 @media screen and (min-width: 1200px) {
+  .home-arrow-next {
+    right: -15px;
+  }
+  .home-arrow-prev {
+    left: -5px;
+  }
+  .home-slide {
+    transform: scale(1);
+  }
   .home__body {
-    height: auto;
-    width: 1200px;
+    min-height: calc(100vh - 170px);
+    width: 100%;
     margin: 0 auto;
     flex-direction: row;
   }
   .home__questions-container {
-    width: 95%;
-    margin-bottom: 20px;
+    width: 75%;
+    margin-bottom: 0px;
   }
   .home__technologies-container {
     width: 25%;
@@ -138,9 +210,11 @@
   }
 }
 @media screen and (min-width: 1400px) {
+  .home-slide {
+    transform: scale(1);
+  }
   .home__body {
-    height: auto;
-    width: 1400px;
+    width: 95%;
     margin: 0 auto;
     flex-direction: row;
   }
